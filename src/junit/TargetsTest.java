@@ -36,11 +36,11 @@ public class TargetsTest {
 		sampleProblemOneAndTwoDigits = new Problem(4, 6, 12);
 		for (int i = 0; i < numOfTargets; i++)
 		{
-			System.out.println(i);
 			SpaceTarget target = new SpaceTarget();
 			listOfTargets.add(target);
 			listOfTargets.get(i).setTargetNumber(i);
 		}
+		System.out.println(listOfTargets.size());
 	}
 	
 	@Test
@@ -52,11 +52,11 @@ public class TargetsTest {
 			{
 				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
 				 * 2/4 is the same as 3/6.*/
-				assertTrue(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 			else
 			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertFalse(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 		}
 	}
@@ -70,11 +70,11 @@ public class TargetsTest {
 			{
 				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
 				 * 12/15 is the same as 4/5.*/
-				assertTrue(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 			else
 			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertFalse(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 		}
 	}
@@ -88,11 +88,11 @@ public class TargetsTest {
 			{
 				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
 				 * 2/2 is the same as 1/1.*/
-				assertTrue(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 			else
 			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertFalse(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 		}
 	}
@@ -106,11 +106,11 @@ public class TargetsTest {
 			{
 				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
 				 * 8/12 is the same as 4/6.*/
-				assertTrue(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 			else
 			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertFalse(sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
+				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
 			}
 		}
 	}
