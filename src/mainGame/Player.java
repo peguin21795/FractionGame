@@ -1,4 +1,4 @@
-
+package mainGame;
 public class Player implements Movable{
 	
 	public Player(){

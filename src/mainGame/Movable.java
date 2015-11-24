@@ -1,3 +1,4 @@
+package mainGame;
 
 public interface Movable {
 	

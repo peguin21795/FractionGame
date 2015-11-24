@@ -1,3 +1,4 @@
+package mainGame;
 
 public class Problem {
 	

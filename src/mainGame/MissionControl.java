@@ -1,3 +1,4 @@
+package mainGame;
 import java.util.ArrayList;
 
 public class MissionControl {
@@ -18,7 +19,7 @@ public class MissionControl {
 		
 	}
 	
-	public ArrayList<Target> generateTargets(){
+	public ArrayList<SpaceTarget> generateTargets(){
 		return null;
 	}
 
