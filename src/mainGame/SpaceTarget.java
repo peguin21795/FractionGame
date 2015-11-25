@@ -3,9 +3,18 @@ package mainGame;
 public class SpaceTarget implements Movable{
 	
 	private int targetNumber;
+	private int row;
+	private int col;
 	
-	public SpaceTarget(){
+	public SpaceTarget()
+	{
 		
+	}
+	
+	public SpaceTarget(int r, int c)
+	{
+		row = r;
+		col = c;
 	}
 	
 	public void move(){
@@ -20,5 +29,25 @@ public class SpaceTarget implements Movable{
 	{
 		return targetNumber;
 	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
+	}
+	
+	
+	
+	
 
 }
