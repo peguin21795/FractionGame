@@ -11,10 +11,11 @@ public class SpaceTarget implements Movable{
 		
 	}
 	
-	public SpaceTarget(int r, int c)
+	public SpaceTarget(int r, int c, int targetNumber)
 	{
 		row = r;
 		col = c;
+		this.targetNumber = targetNumber;
 	}
 	
 	public void move(){

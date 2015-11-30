@@ -1,9 +1,9 @@
 package junit;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,9 +16,11 @@ public class TargetsTest {
 	 * targets except for one will have the wrong answer. A variety of different fractions will be tested here.
 	 * */
 	
+	/* The answers to each problem are 2, 12, 3, 8.*/
+	
 	/* Constants will be initialized here. */
-	final int numOfTargets = 20;
 	ArrayList<SpaceTarget> listOfTargets;
+	int[] answers = {2, 12, 3, 8};
 	Problem sampleProblemOneDigit;
 	Problem sampleProblemWholeNumbers;
 	Problem sampleProblemTwoDigits;
@@ -28,91 +30,53 @@ public class TargetsTest {
 	public void setup()
 	{
 		listOfTargets = new ArrayList<SpaceTarget>();
-		/* The targets generated is dependent on a problem that will be instantiated here. The answer to sampleProblem
-		 * is 4. */
 		sampleProblemOneDigit = new Problem(3, 6, 4);
 		sampleProblemTwoDigits = new Problem(4, 5, 15);
-		sampleProblemWholeNumbers = new Problem(1, 1, 2);
+		sampleProblemWholeNumbers = new Problem(1, 1, 3);
 		sampleProblemOneAndTwoDigits = new Problem(4, 6, 12);
-		for (int i = 0; i < numOfTargets; i++)
+		for (int i = 0; i < answers.length; i++)
 		{
 			SpaceTarget target = new SpaceTarget();
 			listOfTargets.add(target);
-			listOfTargets.get(i).setTargetNumber(i);
+			listOfTargets.get(i).setTargetNumber(answers[i]);
 		}
-		System.out.println(listOfTargets.size());
 	}
 	
 	@Test
 	public void testGenerateTargetsOneDigit()
 	{
-		for (int i = 0; i < numOfTargets; i++)
-		{
-			if (i == 2)
-			{
-				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
-				 * 2/4 is the same as 3/6.*/
-				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-			else
-			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-		}
+		System.out.println(listOfTargets.get(0).getTargetNumber());
+		Assert.assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(0).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(1).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(2).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(3).getTargetNumber()));
 	}
 	
 	@Test
 	public void testGenerateTargetsTwoDigit()
 	{
-		for (int i = 0; i < numOfTargets; i++)
-		{
-			if (i == 12)
-			{
-				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
-				 * 12/15 is the same as 4/5.*/
-				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-			else
-			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-		}
+		Assert.assertEquals(false, sampleProblemTwoDigits.checkAnswer(listOfTargets.get(0).getTargetNumber()));
+		Assert.assertEquals(true, sampleProblemTwoDigits.checkAnswer(listOfTargets.get(1).getTargetNumber()));
+		Assert.assertEquals(false,sampleProblemTwoDigits.checkAnswer(listOfTargets.get(2).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemTwoDigits.checkAnswer(listOfTargets.get(3).getTargetNumber()));
 	}
 	
 	@Test
 	public void testGenerateTargetsWholeNumber()
 	{
-		for (int i = 0; i < numOfTargets; i++)
-		{
-			if (i == 2)
-			{
-				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
-				 * 2/2 is the same as 1/1.*/
-				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-			else
-			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-		}
+		Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(0).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(1).getTargetNumber()));
+		Assert.assertEquals(true, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(2).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(3).getTargetNumber()));
 	}
 
 	@Test
 	public void testGenerateTargetsOneAndTwoDigits()
-	{
-		for (int i = 0; i < numOfTargets; i++)
-		{
-			if (i == 8)
-			{
-				/* The fifth element of the ArrayList<SpaceTarget> must contain the right answer because 
-				 * 8/12 is the same as 4/6.*/
-				assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-			else
-			{	/* The other elements of the ArrayList<SpaceTarget> should not contain the right answer! */
-				assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(i).getTargetNumber()));
-			}
-		}
+	{	
+		Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(0).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(1).getTargetNumber()));
+		Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(2).getTargetNumber()));
+		Assert.assertEquals(true, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(3).getTargetNumber()));
 	}
 
 }

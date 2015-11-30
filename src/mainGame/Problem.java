@@ -15,18 +15,25 @@ public class Problem {
 	 * 
 	 * */
 	
-	private int denominator;
 	private int numerator;
+	private int denominator;
 	private int generateDenominatorOfSolution;
 	
-	public Problem(int denominator, int numerator, int generateDenominatorOfSolution){
-		this.denominator = denominator;
+	public Problem(int numerator, int denominator, int generateDenominatorOfSolution){
 		this.numerator = numerator;
+		this.denominator = denominator;
 		this.generateDenominatorOfSolution = generateDenominatorOfSolution;
 	}
 
 	public Boolean checkAnswer(int selectedAnswer)
 	{
-		return null; 
+		double tolerance = 0.0000000001;
+		double givenAnswer = (double)numerator/denominator;
+		double chosenAnswer = (double)selectedAnswer/generateDenominatorOfSolution;
+		if (Math.abs(chosenAnswer - givenAnswer) <= tolerance)
+		{
+			return true;
+		}
+		return false;
 	}
 }
