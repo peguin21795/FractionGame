@@ -18,19 +18,23 @@ public class Problem {
 	private int numerator;
 	private int denominator;
 	private int generateDenominatorOfSolution;
+	private int solution;
 	
 	public Problem(int numerator, int denominator, int generateDenominatorOfSolution){
 		this.numerator = numerator;
 		this.denominator = denominator;
 		this.generateDenominatorOfSolution = generateDenominatorOfSolution;
+		this.solution = generateDenominatorOfSolution*numerator/denominator;
+	}
+	
+	public int getSolution()
+	{
+		return solution;
 	}
 
 	public Boolean checkAnswer(int selectedAnswer)
 	{
-		double tolerance = 0.0000000001;
-		double givenAnswer = (double)numerator/denominator;
-		double chosenAnswer = (double)selectedAnswer/generateDenominatorOfSolution;
-		if (Math.abs(chosenAnswer - givenAnswer) <= tolerance)
+		if (selectedAnswer == solution)
 		{
 			return true;
 		}

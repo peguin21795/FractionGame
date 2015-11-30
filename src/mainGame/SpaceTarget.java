@@ -8,7 +8,9 @@ public class SpaceTarget implements Movable{
 	
 	public SpaceTarget()
 	{
-		
+		row = 0;
+		col = 0;
+		targetNumber = 0;
 	}
 	
 	public SpaceTarget(int r, int c, int targetNumber)
@@ -46,9 +48,6 @@ public class SpaceTarget implements Movable{
 	public void setCol(int col) {
 		this.col = col;
 	}
-	
-	
-	
 	
 
 }
