@@ -44,13 +44,21 @@ public class Player implements Movable{
 	public boolean hitTarget(SpaceTarget target)
 	{
 		//Target will be "hit" if it is in the same column as the player
-		return false;
+		return target.getCol() == this.col;
 	}
 	
 	//Updates the gui when a shot is fired by the player
 	public void shoot(SpaceTarget target)
 	{
+		laser = new Laser(this);
+		System.out.println(laser.getCol() + ", " + laser.getRow());
+		this.getDistanceToTarget(target);
 		//loop until shot has hit target, using distance to target as a bound
+		for(int i = 0; i < distanceToTarget; i++)
+		{
+			laser.updateLocation();
+			System.out.println(laser.getCol() + ", " + laser.getRow());
+		}
 	}
 	
 	public int getRow()
@@ -71,7 +79,15 @@ public class Player implements Movable{
 		this.col = col;
 	}
 
-	public int getDistanceToTarget() {
+	public int getDistanceToTarget(SpaceTarget target) {
+		if(this.hitTarget(target))
+		{
+			distanceToTarget = (this.row - 1) - target.getRow();
+		}
+		else
+		{
+			distanceToTarget = this.row - 1;
+		}
 		return distanceToTarget;
 	}
 

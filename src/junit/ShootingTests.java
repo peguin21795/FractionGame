@@ -70,11 +70,11 @@ public class ShootingTests {
 		target.setCol(5);
 		target.setRow(3);
 		player.shoot(target);
-		assertEquals(6, player.getDistanceToTarget());
+		assertEquals(6, player.getDistanceToTarget(target));
 		
 		target.setRow(1);
 		player.shoot(target);
-		assertEquals(8, player.getDistanceToTarget());
+		assertEquals(8, player.getDistanceToTarget(target));
 		
 		//Test that the laser stops when it hits the target
 		target.setRow(3);
@@ -91,14 +91,14 @@ public class ShootingTests {
 		player.setCol(8);
 		player.setRow(4);
 		player.shoot(target);
-		assertEquals(4, player.getDistanceToTarget());
+		assertEquals(3, player.getDistanceToTarget(target));
 		assertEquals(0, player.getLaser().getRow());
 		assertEquals(8, player.getLaser().getCol());
 		
 		player.setCol(13);
 		player.setRow(9);
 		player.shoot(target);
-		assertEquals(9, player.getDistanceToTarget());
+		assertEquals(8, player.getDistanceToTarget(target));
 		assertEquals(0, player.getLaser().getRow());
 		assertEquals(13, player.getLaser().getCol());
 		
