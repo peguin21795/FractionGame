@@ -1,6 +1,10 @@
 package mainGame;
 
 public class Term {
+	/* Three different types of terms can be constructed depending on what type of problem will be generated.     
+	 * A terms consists of two composing instance variables: denominator and numerator. As the problems progress
+	 * in difficulty, two additional instance variables, wholeNumber and decimal, will be needed.
+	 */
 	private int denominator;
 	private int numerator;
 	private int wholeNumber;
@@ -13,16 +17,36 @@ public class Term {
 		this.decimal = dec;
 	}
 	public Term(int whole){
-		numerator = 0;
-		denominator = 0;
-		decimal = 0;
-		wholeNumber = whole;
+		this.numerator = 0;
+		this.denominator = 0;
+		this.decimal = 0;
+		this.wholeNumber = whole;
 	}
 	public Term(int numer, int denom){
-		numerator = numer;
-		denominator = denom;
-		wholeNumber = 0;
-		decimal = 0;
+		this.numerator = numer;
+		this.denominator = denom;
+		this.wholeNumber = 0;
+		this.decimal = 0;
 	}
-
+	
+	/*The getters and setters are for testing purposes only.*/
+	public int getDenominator()
+	{
+		return denominator;
+	}
+	
+	public int getNumerator()
+	{
+		return numerator;
+	}
+	
+	public int wholeNumber()
+	{
+		return wholeNumber;
+	}
+	
+	public float getDecimal()
+	{
+		return decimal;
+	}
 }

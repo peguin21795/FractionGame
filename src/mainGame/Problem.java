@@ -4,29 +4,15 @@ import java.util.Random;
 
 public class Problem {
 	
-	/*
-	 *  
-	 *  The Problem class will consist of three components. The numerator and denominator variables for a fraction 
-	 * will be displayed on the main game board instantiated by the MissionControl class. The fraction will be
-	 * set equal to a partially filled out fraction where the user must select the correct answer to complete 
-	 * the problem.
-	 * 
-	 * Example:
-	 * 
-	 *  numerator     [BLANK ANSWER]
-	 * ----------- = ---------------- 
-	 * denominator   generateDenomin.
-	 * 
-	 * */
-	
+	/* The second term will be used if necessary for certain problems.*/
 	private Term first, second, solution;
 	private int remainder;
-	//private String operation;
-	//private Level difficulty;
 	
-	//this constructor for easy simple fractal division.
-	//int int int 
-	public Problem(String operation, int level){
+	/* A string will be passed into the constructor to determine the type of 
+	 * problem that needs to be generated. An integer will also be passed to set 
+	 * the appropriate level. */
+	public Problem(String operation, int level)
+	{
 		if(operation == "divide")
 			callDivide(level);
 		if(operation == "factor")
@@ -34,20 +20,22 @@ public class Problem {
 		if(operation == "add")
 			callAddition(level);
 		if(operation == "subtract")
-			callSubtrack(level);
+			callSubtract(level);
 		else
 			callHardest(level);
-		
 	}
-	public Problem(int one, int two, int three){
+	
+	public Problem(int one, int two, int three)
+	{
 		first = new Term(one);
 		second = new Term(two);
 		solution = new Term(three);
 	}
-	
 
-	private void callDivide(int level){
-		if(level == 1){
+	private void callDivide(int level)
+	{
+		if(level == 1)
+		{
 			Random rn = new Random(System.nanoTime());
 			int one = (rn.nextInt(100)+1)/10;
 			int two = (rn.nextInt(100)+1)/10;
@@ -56,22 +44,26 @@ public class Problem {
 			this.second = null;
 			this.solution = new Term(one);
 		}
-		if(level==2){
+		else if (level == 2)
+		{
 			Random rn = new Random(System.nanoTime());
-			int two = rn.nextInt(10)+1;
-			if(two==3||two==5||two==7||two==9)
+			int two = rn.nextInt(10) + 1;
+			if (two == 3 || two == 5 || two == 7 || two == 9)
 				two = two-1;
 			int one = 1;
 			this.first = new Term(one,two);
 			this.second = null;
-			this.solution = new Term(0,0,0,(one/two));
+			this.solution = new Term(0, 0, 0, (one/two));
 		}
-		else{
+		else
+		{
 			
 		}
 	}
-	private void callFactor(int level){
-		if(level==1){
+	private void callFactor(int level)
+	{
+		if (level == 1)
+		{
 			Random rn = new Random();
 			int one = rn.nextInt(10)+1;
 			int two = rn.nextInt(10)+1;
@@ -80,21 +72,25 @@ public class Problem {
 			int five = two*three;
 			this.first = new Term(four, five);
 			this.second = null;
-			this.solution = new Term(one,two);
+			this.solution = new Term(one, two);
 		}
-		else{
+		else
+		{
 			
 		}
 	}
-	private void callAddition(int level){
+	private void callAddition(int level)
+	{
 		
 	}
-	private void callSubtrack(int level){
+	private void callSubtract(int level)
+	{
 		
 	}
 	private void callHardest(int level){
 		
 	}
+	
 	public Boolean checkAnswer(int selectedAnswer)
 	{
 		return null; 
