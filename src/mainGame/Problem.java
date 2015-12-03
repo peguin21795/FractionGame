@@ -65,7 +65,8 @@ public class Problem {
 			int one = 1;
 			this.first = new Term(one,two);
 			this.second = null;
-			this.solution = new Term(0, 0, 0, (one/two));
+			float dec = (float)one/two;
+			this.solution = new Term(0, 0, 0, dec);
 		}
 		else if (level == 3)
 		{
@@ -125,9 +126,13 @@ public class Problem {
 			this.second = null;
 			this.solution = new Term(one,two,three,0);
 		}
+		else{
+			System.err.println("INVALID LEVEL!!");
+		}
 	}
 	
 	private void callAddition(int level)
+	//this level is simple addition of fractions with common denomonator, and the answer is left as an improper fraction.
 	{
 		if(level == 1)
 		{
@@ -135,8 +140,30 @@ public class Problem {
 			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
+
 			//this.first = new Term()
+
+			this.first = new Term(two, one);
+			this.second = new Term(three, one);
+			this.solution = new Term((two+three),one);
 		}
+		else if(level == 2)
+		{
+			Random rn = new Random();
+			int one = (rn.nextInt(10)+1);
+			int two = (rn.nextInt(10)+1);
+			int three = (rn.nextInt(10)+1);
+			int four = 0;
+			this.first = new Term(two, one);
+			this.second = new Term(three, one);
+			if((two+three) > one && (two+three) < (one*2))
+			{
+				four = (two + three) - one;
+			}
+			this.solution = new Term(four, one, 1,0);
+
+		}
+		
 	}
 	private void callSubtract(int level)
 	{

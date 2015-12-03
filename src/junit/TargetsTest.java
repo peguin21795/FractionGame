@@ -1,6 +1,8 @@
 package junit;
 
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
@@ -76,13 +78,22 @@ public class TargetsTest {
 	@Test
 	public void testGenerateDivision()
 	{	
-		sampleProblemAddition = new Problem("divide", 1);
-		sampleProblemAddition = new Problem("divide", 2);
-		sampleProblemAddition = new Problem("divide", 3);
-		/*Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(0).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(1).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(2).getTargetNumber()));
-		Assert.assertEquals(true, sampleProblemOneAndTwoDigits.checkAnswer(listOfTargets.get(3).getTargetNumber()));*/
+		sampleProblemDivision = new Problem("divide", 1);
+		assertEquals(sampleProblemDivision.getFirst().getNumerator()/sampleProblemDivision.getFirst().getDenominator(),
+				sampleProblemDivision.getSolution().getWholeNumber());
+		assertEquals(null, sampleProblemDivision.getSecond());
+		
+		sampleProblemDivision = new Problem("divide", 2);
+		System.out.println(sampleProblemDivision.getSolution().getDecimal());
+		assertEquals((float)sampleProblemDivision.getFirst().getNumerator()/(float)sampleProblemDivision.getFirst().getDenominator(),
+				sampleProblemDivision.getSolution().getDecimal(), 0.000001);
+		assertEquals(null, sampleProblemDivision.getSecond());
+		
+		sampleProblemDivision = new Problem("divide", 3);
+		assertEquals(sampleProblemDivision.getSolution().getDenominator(), sampleProblemDivision.getFirst().getDenominator());
+		assertEquals(sampleProblemDivision.getSolution().getWholeNumber()*sampleProblemDivision.getSolution().getDenominator() + sampleProblemDivision.getSolution().getNumerator(),
+				sampleProblemDivision.getFirst().getNumerator());
+		assertEquals(null, sampleProblemDivision.getSecond());
 	}
 
 }

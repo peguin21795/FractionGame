@@ -40,7 +40,7 @@ public class Term {
 		return numerator;
 	}
 	
-	public int wholeNumber()
+	public int getWholeNumber()
 	{
 		return wholeNumber;
 	}
