@@ -112,7 +112,8 @@ public class Problem {
 			else if(two <5)
 				two = two + 7;
 			int three = (rn.nextInt(10)+1);
-			this.first = new Term((three*one),(three*two));
+			//this.first = new Term((three*one),(three*two));
+			this.first = new Term((three*two) + one,two);
 			this.second = null;
 			this.solution = new Term(one,two,three,0);
 		}
@@ -122,7 +123,8 @@ public class Problem {
 			int one = (rn.nextInt(20)+1);
 			int two = (rn.nextInt(30)+1);
 			int three = (rn.nextInt(10)+1);
-			this.first = new Term((three*one),(three*two));
+			//this.first = new Term((three*one),(three*two));
+			this.first = new Term((three*two) + one,two);
 			this.second = null;
 			this.solution = new Term(one,two,three,0);
 		}

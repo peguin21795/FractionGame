@@ -67,12 +67,22 @@ public class TargetsTest {
 	public void testGenerateFactoring()
 	{
 		sampleProblemFactoring = new Problem("factor", 1);
+		float solution = (float)sampleProblemFactoring.getSolution().getNumerator()/(float)sampleProblemFactoring.getSolution().getDenominator();
+		float first = (float)sampleProblemFactoring.getFirst().getNumerator()/(float)sampleProblemFactoring.getFirst().getDenominator();
+		assertEquals(solution, first, 0.000001);
+		assertEquals(null, sampleProblemFactoring.getSecond());
+		
 		sampleProblemFactoring = new Problem("factor", 2);
+		float solution_numerator = (float)sampleProblemFactoring.getSolution().getWholeNumber()*(float)sampleProblemFactoring.getSolution().getDenominator()+(float)sampleProblemFactoring.getSolution().getNumerator();
+		solution = solution_numerator / (float)sampleProblemFactoring.getSolution().getDenominator();
+		first = (float)sampleProblemFactoring.getFirst().getNumerator()/(float)sampleProblemFactoring.getFirst().getDenominator();
+		assertEquals(solution, first, 0.000001);
+		
 		sampleProblemFactoring = new Problem("factor", 3);
-		/*Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(0).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(1).getTargetNumber()));
-		Assert.assertEquals(true, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(2).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemWholeNumbers.checkAnswer(listOfTargets.get(3).getTargetNumber()));*/
+		solution_numerator = (float)sampleProblemFactoring.getSolution().getWholeNumber()*(float)sampleProblemFactoring.getSolution().getDenominator()+(float)sampleProblemFactoring.getSolution().getNumerator();
+		solution = solution_numerator / (float)sampleProblemFactoring.getSolution().getDenominator();
+		first = (float)sampleProblemFactoring.getFirst().getNumerator()/(float)sampleProblemFactoring.getFirst().getDenominator();
+		assertEquals(solution, first, 0.000001);
 	}
 
 	@Test
@@ -84,7 +94,6 @@ public class TargetsTest {
 		assertEquals(null, sampleProblemDivision.getSecond());
 		
 		sampleProblemDivision = new Problem("divide", 2);
-		System.out.println(sampleProblemDivision.getSolution().getDecimal());
 		assertEquals((float)sampleProblemDivision.getFirst().getNumerator()/(float)sampleProblemDivision.getFirst().getDenominator(),
 				sampleProblemDivision.getSolution().getDecimal(), 0.000001);
 		assertEquals(null, sampleProblemDivision.getSecond());
