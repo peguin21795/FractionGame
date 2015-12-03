@@ -50,7 +50,7 @@ public class Problem {
 		{
 			Random rn = new Random(System.nanoTime());
 			int one = (rn.nextInt(100)+1)/10;
-			int two = (rn.nextInt(100)+1)/10;
+			int two = (rn.nextInt(10)+1);
 			int three = one * two;
 			this.first = new Term(three,two);
 			this.second = null;
@@ -71,11 +71,11 @@ public class Problem {
 		{
 			Random rn = new Random(System.nanoTime());
 			int one = (rn.nextInt(100)+1)/10;
-			int two = (rn.nextInt(100)+1)/20;
+			int two = (rn.nextInt(20)+1);
 			int three = (rn.nextInt(100)+1)/10;
 			int four = two*three;
 			this.solution = new Term(one, two, three,0);
-			this.first = new Term(four, two);
+			this.first = new Term((four+one), two);
 			this.second = null;
 		}
 		else{
@@ -90,20 +90,51 @@ public class Problem {
 			int one = rn.nextInt(10)+1;
 			int two = rn.nextInt(10)+1;
 			int three = rn.nextInt(10)+1;
+			if(one==2 || one == 4 || one==6 || one==8 || one==10)
+				one =  one-1;
 			int four = one*three;
+			if(two==2 || two==4 || two==6 || two==8 || two==10)
+				two = two-1;
 			int five = two*three;
 			this.first = new Term(four, five);
 			this.second = null;
 			this.solution = new Term(one, two);
 		}
-		else
+		else if(level ==2)
 		{
-			
+			Random rn = new Random();
+			int one = (rn.nextInt(100)+1)/10;
+			int two = (rn.nextInt(20)+1);
+			if(two<10 && two > 5)
+				two = two+5;
+			else if(two <5)
+				two = two + 7;
+			int three = (rn.nextInt(10)+1);
+			this.first = new Term((three*one),(three*two));
+			this.second = null;
+			this.solution = new Term(one,two,three,0);
+		}
+		else if(level == 3)
+		{
+			Random rn = new Random();
+			int one = (rn.nextInt(20)+1);
+			int two = (rn.nextInt(30)+1);
+			int three = (rn.nextInt(10)+1);
+			this.first = new Term((three*one),(three*two));
+			this.second = null;
+			this.solution = new Term(one,two,three,0);
 		}
 	}
 	private void callAddition(int level)
 	{
-		
+		if(level == 1)
+		{
+			Random rn = new Random();
+			int one = (rn.nextInt(10)+1);
+			int two = (rn.nextInt(10)+1);
+			int three = (rn.nextInt(10)+1);
+			this.first = new Term()
+		}
 	}
 	private void callSubtract(int level)
 	{
