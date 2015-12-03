@@ -82,6 +82,7 @@ public class Problem {
 			System.err.println("INVALID LEVEL!!");
 		}
 	}
+	
 	private void callFactor(int level)
 	{
 		if (level == 1)
@@ -100,7 +101,7 @@ public class Problem {
 			this.second = null;
 			this.solution = new Term(one, two);
 		}
-		else if(level ==2)
+		else if(level == 2)
 		{
 			Random rn = new Random();
 			int one = (rn.nextInt(100)+1)/10;
@@ -125,6 +126,7 @@ public class Problem {
 			this.solution = new Term(one,two,three,0);
 		}
 	}
+	
 	private void callAddition(int level)
 	{
 		if(level == 1)
@@ -133,7 +135,7 @@ public class Problem {
 			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
-			this.first = new Term()
+			//this.first = new Term()
 		}
 	}
 	private void callSubtract(int level)
