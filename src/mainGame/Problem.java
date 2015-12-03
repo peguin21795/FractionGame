@@ -141,6 +141,7 @@ public class Problem {
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
 
+
 			//this.first = new Term()
 
 			this.first = new Term(two, one);
@@ -161,9 +162,14 @@ public class Problem {
 				four = (two + three) - one;
 			}
 			this.solution = new Term(four, one, 1,0);
-
 		}
-		
+		else if(level == 3)
+		{
+			
+		}
+		else{
+			System.err.println("INVALID LEVEL!!");
+		}
 	}
 	private void callSubtract(int level)
 	{
