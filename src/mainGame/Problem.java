@@ -217,8 +217,24 @@ public class Problem {
 			int four = rn.nextInt(5)+1;
 			if((two+three)> one && (two+three) < (one*2))
 				this.solution = new Term(((two+three)-one), one, 1,0);
-			if((two+three) > (one*2) && (two+three) < (one*3))
+			else if((two+three) > (one*2) && (two+three) < (one*3))
 				this.solution = new Term(((two+three)-(one*2)),one, 2,0);
+			else if((two+three) > (one*3) && (two+three) < (one*4))
+				this.solution = new Term(((two+three)-(one*3)),one, 3,0);
+			else if((two+three) > (one*4) && (two+three) < (one*5))
+				this.solution = new Term(((two+three)-(one*4)),one, 4,0);
+			else if((two+three) > (one*5) && (two+three) < (one*6))
+				this.solution = new Term(((two+three)-(one*5)),one, 5,0);
+			else if((two+three) > (one*6) && (two+three) < (one*7))
+				this.solution = new Term(((two+three)-(one*6)),one, 6,0);
+			else if((two+three) > (one*7) && (two+three) < (one*8))
+				this.solution = new Term(((two+three)-(one*7)),one, 7,0);
+			else if((two+three) > (one*8) && (two+three) < (one*9))
+				this.solution = new Term(((two+three)-(one*8)),one, 8,0);
+			else if((two+three) > (one*9) && (two+three) < (one*10))
+				this.solution = new Term(((two+three)-(one*9)),one, 9,0);
+			else if((two+three) > (one*10) && (two+three) < (one*11))
+				this.solution = new Term(((two+three)-(one*10)),one, 10,0);
 			else
 				this.solution = new Term((two+three), one);
 			int five = four*2;
