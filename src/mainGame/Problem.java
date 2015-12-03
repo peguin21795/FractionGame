@@ -184,6 +184,26 @@ public class Problem {
 				four = (two + three) - (one*6);
 				this.solution = new Term(four, one, 6,0);
 			}
+			else if((two+three) > (one*7) && (two+three) < (one*8))
+			{
+				four = (two + three) - (one*7);
+				this.solution = new Term(four, one, 7,0);
+			}
+			else if((two+three) > (one*8) && (two+three) < (one*9))
+			{
+				four = (two + three) - (one*8);
+				this.solution = new Term(four, one, 8,0);
+			}
+			else if((two+three) > (one*9) && (two+three) < (one*10))
+			{
+				four = (two + three) - (one*9);
+				this.solution = new Term(four, one, 9,0);
+			}
+			else if((two+three) > (one*10) && (two+three) < (one*11))
+			{
+				four = (two + three) - (one*10);
+				this.solution = new Term(four, one, 10,0);
+			}
 		}
 		else if(level == 3)
 		{
