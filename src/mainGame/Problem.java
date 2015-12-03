@@ -157,7 +157,13 @@ public class Problem {
 			}
 			this.solution = new Term(four, one, 1,0);
 		}
-		
+		else if(level == 3)
+		{
+			
+		}
+		else{
+			System.err.println("INVALID LEVEL!!");
+		}
 	}
 	private void callSubtract(int level)
 	{
