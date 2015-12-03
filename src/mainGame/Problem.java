@@ -6,7 +6,7 @@ public class Problem {
 	
 	/* The second term will be used if necessary for certain problems.*/
 	private Term first, second, solution;
-	private int remainder;
+	//private int remainder;
 	
 	/* A string will be passed into the constructor to determine the type of 
 	 * problem that needs to be generated. An integer will also be passed to set 
@@ -25,6 +25,18 @@ public class Problem {
 			callHardest(level);
 	}
 	
+	public Term getFirst() {
+		return first;
+	}
+
+	public Term getSecond() {
+		return second;
+	}
+
+	public Term getSolution() {
+		return solution;
+	}
+
 	public Problem(int one, int two, int three)
 	{
 		first = new Term(one);
@@ -55,9 +67,19 @@ public class Problem {
 			this.second = null;
 			this.solution = new Term(0, 0, 0, (one/two));
 		}
-		else
+		else if (level == 3)
 		{
-			
+			Random rn = new Random(System.nanoTime());
+			int one = (rn.nextInt(100)+1)/10;
+			int two = (rn.nextInt(100)+1)/20;
+			int three = (rn.nextInt(100)+1)/10;
+			int four = two*three;
+			this.solution = new Term(one, two, three,0);
+			this.first = new Term(four, two);
+			this.second = null;
+		}
+		else{
+			System.err.println("INVALID LEVEL!!");
 		}
 	}
 	private void callFactor(int level)
