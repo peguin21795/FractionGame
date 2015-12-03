@@ -157,8 +157,18 @@ public class Problem {
 			if((two+three) > one && (two+three) < (one*2))
 			{
 				four = (two + three) - one;
+				this.solution = new Term(four, one, 1,0);
 			}
-			this.solution = new Term(four, one, 1,0);
+			else if((two+three) > (one*2) && (two+three) < (one*3))
+			{
+				four = (two + three) - (one*2);
+				this.solution = new Term(four, one, 2,0);
+			}
+			else if((two+three) > (one*3) && (two+three) < (one*4))
+			{
+				four = (two + three) - (one*3);
+				this.solution = new Term(four, one, 3,0);
+			}
 		}
 		else if(level == 3)
 		{
