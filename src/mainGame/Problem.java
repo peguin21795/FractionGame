@@ -204,6 +204,9 @@ public class Problem {
 				four = (two + three) - (one*10);
 				this.solution = new Term(four, one, 10,0);
 			}
+			else{
+				this.solution = new Term((two+three),one);
+			}
 		}
 		else if(level == 3)
 		{
