@@ -214,7 +214,8 @@ public class Problem {
 			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
-			int four = rn.nextInt(5)+1;
+			int four = rn.nextInt(5)+2;
+			System.out.println(one + " " + two + " " + three + " " + four);
 			if((two+three)> one && (two+three) < (one*2))
 				this.solution = new Term(((two+three)-one), one, 1,0);
 			else if((two+three) > (one*2) && (two+three) < (one*3))
@@ -239,7 +240,7 @@ public class Problem {
 				this.solution = new Term((two+three), one);
 			int five = four*2;
 			this.first = new Term((two*four), (one*four));
-			this.second = new Term((two*five), (one*five));
+			this.second = new Term((three*five), (one*five));
 		}
 		else{
 			System.err.println("INVALID LEVEL!!");

@@ -42,13 +42,24 @@ public class TargetsTest {
 	public void testGenerateAddition()
 	{
 		sampleProblemAddition = new Problem("add", 1);
+		assertEquals(sampleProblemAddition.getSolution().getNumerator(), sampleProblemAddition.getFirst().getNumerator() + sampleProblemAddition.getSecond().getNumerator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getSecond().getDenominator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
+		
 		sampleProblemAddition = new Problem("add", 2);
+		int solution_numerator = sampleProblemAddition.getSolution().getNumerator() + sampleProblemAddition.getSolution().getDenominator() * sampleProblemAddition.getSolution().getWholeNumber(); 
+		assertEquals(solution_numerator, sampleProblemAddition.getFirst().getNumerator() + sampleProblemAddition.getSecond().getNumerator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getSecond().getDenominator());
+		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
+		
 		sampleProblemAddition = new Problem("add", 3);
-		/*System.out.println(listOfTargets.get(0).getTargetNumber());
-		Assert.assertEquals(true, sampleProblemOneDigit.checkAnswer(listOfTargets.get(0).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(1).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(2).getTargetNumber()));
-		Assert.assertEquals(false, sampleProblemOneDigit.checkAnswer(listOfTargets.get(3).getTargetNumber()));*/
+		solution_numerator = sampleProblemAddition.getSolution().getNumerator() + sampleProblemAddition.getSolution().getDenominator() * sampleProblemAddition.getSolution().getWholeNumber(); 
+		float solution = (float)solution_numerator/(float)sampleProblemAddition.getSolution().getDenominator();
+		float term1 = (float)sampleProblemAddition.getFirst().getNumerator()/(float)sampleProblemAddition.getFirst().getDenominator();
+		float term2 = (float)sampleProblemAddition.getSecond().getNumerator()/(float)sampleProblemAddition.getSecond().getDenominator();
+		assertEquals(solution, term1 + term2, 0.000001);
 	}
 	
 	@Test
