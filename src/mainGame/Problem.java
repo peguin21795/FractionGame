@@ -112,7 +112,7 @@ public class Problem {
 			else if(two <5)
 				two = two + 7;
 			int three = (rn.nextInt(10)+1);
-			this.first = new Term((three*one),(three*two));
+			this.first = new Term(((three*two) + one), two);
 			this.second = null;
 			this.solution = new Term(one,two,three,0);
 		}
@@ -122,7 +122,8 @@ public class Problem {
 			int one = (rn.nextInt(20)+1);
 			int two = (rn.nextInt(30)+1);
 			int three = (rn.nextInt(10)+1);
-			this.first = new Term((three*one),(three*two));
+			//this.first = new Term((three*one),(three*two));
+			this.first = new Term(((three*two) + one), two);
 			this.second = null;
 			this.solution = new Term(one,two,three,0);
 		}
@@ -140,10 +141,6 @@ public class Problem {
 			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
-
-
-			//this.first = new Term()
-
 			this.first = new Term(two, one);
 			this.second = new Term(three, one);
 			this.solution = new Term((two+three),one);
@@ -165,7 +162,20 @@ public class Problem {
 		}
 		else if(level == 3)
 		{
-			
+			Random rn = new Random();
+			int one = (rn.nextInt(10)+1);
+			int two = (rn.nextInt(10)+1);
+			int three = (rn.nextInt(10)+1);
+			int four = rn.nextInt(5)+1;
+			if((two+three)> one && (two+three) < (one*2))
+				this.solution = new Term(((two+three)-one), one, 1,0);
+			if((two+three) > (one*2) && (two+three) < (one*3))
+				this.solution = new Term(((two+three)-(one*2)),one, 2,0);
+			else
+				this.solution = new Term((two+three), one);
+			int five = four*2;
+			this.first = new Term((two*four), (one*four));
+			this.second = new Term((two*five), (one*five));
 		}
 		else{
 			System.err.println("INVALID LEVEL!!");
