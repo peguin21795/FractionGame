@@ -1,7 +1,7 @@
 package mainGame;
 import java.util.ArrayList;
 
-public class MissionControl {
+public class MissionControl{
 	
 	public MissionControl(){
 		

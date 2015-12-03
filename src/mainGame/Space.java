@@ -9,6 +9,11 @@ public class Space {
 		
 	}
 	
+	public void paintComponents()
+	{
+		
+	}
+	
 	public void generateStars(){
 		
 	}
