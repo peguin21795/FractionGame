@@ -1,7 +1,9 @@
 package mainGame;
 import java.util.ArrayList;
 
-public class MissionControl{
+import javax.swing.JPanel;
+
+public class MissionControl extends JPanel{
 	
 	public MissionControl(){
 		

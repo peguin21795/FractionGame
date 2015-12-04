@@ -1,8 +1,14 @@
 package mainGame;
 
+import java.awt.GridLayout;
 import java.util.Random;
 
-public class Problem {
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Problem extends JPanel{
 	
 	/* The second term will be used if necessary for certain problems.*/
 	private Term first, second, solution;
@@ -13,6 +19,7 @@ public class Problem {
 	 * the appropriate level. */
 	public Problem(String operation, int level)
 	{
+		displayProblem();
 		if(operation == "divide")
 			callDivide(level);
 		if(operation == "factor")
@@ -35,13 +42,6 @@ public class Problem {
 
 	public Term getSolution() {
 		return solution;
-	}
-
-	public Problem(int one, int two, int three)
-	{
-		first = new Term(one);
-		second = new Term(two);
-		solution = new Term(three);
 	}
 
 	private void callDivide(int level)
@@ -257,5 +257,19 @@ public class Problem {
 	public Boolean checkAnswer(int selectedAnswer)
 	{
 		return null; 
+	}
+	
+	public void displayProblem()
+	{
+		setLayout(new GridLayout(2, 1));
+		add(new JLabel("Solve this problem!"));
+		/*The problem will be displayed here*/
+	}
+	
+	public Problem(int one, int two, int three)
+	{
+		first = new Term(one);
+		second = new Term(two);
+		solution = new Term(three);
 	}
 }
