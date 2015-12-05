@@ -1,29 +1,55 @@
 package mainGame;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-//import mainFrame.GameFrame;
-
 public class Space extends JPanel 
 {
-	// Values set arbitrarily, needed for tests
-	private static final int BOARD_WIDTH = 500;
-	private static final int BOARD_HEIGHT = 500;
 	private int rows;
 	private int cols;
 	private SpaceCell[][] board;
+	private Player ship;
 	
 	public Space()
 	{
 		rows = 10;
 		cols = 10;
-		this.setSize(BOARD_WIDTH, BOARD_HEIGHT);
-		initialize();
+		ship = new Player(9, 5);
+		initCells();
+		Dimension d = new Dimension(500, 500);
+		setPreferredSize(d);
+		setVisible(true);
 	}
 	
-	public void initialize()
+	@Override
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		
+		//Calculate the size of each space cell
+		int cellWidth = 500/cols;
+		int cellHeight = 500/rows;
+				
+		//Draw all the space cells
+		for(int i = 0; i < rows; i++)
+		{
+			for(SpaceCell b : board[i])
+			{
+				b.draw(g, cellWidth, cellHeight);
+			}
+		}
+		//setBackground(Color.ORANGE);
+		//g.drawRect(100, 100, 100, 100);
+		
+		//Draw the player
+		board[ship.getRow()][ship.getCol()].drawPlayer(g, cellWidth, cellHeight);
+		
+	}
+	
+	public void initCells()
 	{
 		board = new SpaceCell[rows][cols];
 		for(int i = 0; i < rows; i++)
@@ -33,49 +59,5 @@ public class Space extends JPanel
 				board[i][j] = new SpaceCell(i, j, 0);
 			}
 		}
-	}
-	
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		
-		//Calculate the size of each space cell
-		int cellWidth = BOARD_WIDTH/cols;
-		int cellHeight = BOARD_HEIGHT/rows;
-		
-		//Draw all the space cells
-		for(int i = 0; i < rows; i++)
-		{
-			for(SpaceCell b : board[i])
-			{
-				b.draw(g, cellWidth, cellHeight);
-			}
-		}
-		
-		//Draw the player
-	}
-	
-	public void generateStars(){
-		
-	}
-	
-	public void selectPlayerShape(){
-		
-	}
-	
-	public int getWidth() {
-		return rows;
-	}
-
-	public int getHeight() {
-		return cols;
-	}
-
-	public static int getWindowWidth() {
-		return BOARD_WIDTH;
-	}
-
-	public static int getWindowHeight() {
-		return BOARD_HEIGHT;
 	}
 }

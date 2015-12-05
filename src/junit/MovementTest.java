@@ -2,6 +2,8 @@ package junit;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ public class MovementTest {
 	private Space s;
 	
 	@Before
-	public void init()
+	public void init() throws IOException
 	{
 		p = new Player();
 		s = new Space();
