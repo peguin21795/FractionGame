@@ -20,7 +20,7 @@ public class SpaceTarget implements Movable{
 		this.targetNumber = targetNumber;
 	}
 	
-	public void move(char m){
+	public void move(char m, Space s){
 		
 	}
 

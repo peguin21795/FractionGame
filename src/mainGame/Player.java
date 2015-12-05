@@ -17,14 +17,14 @@ public class Player implements Movable{
 		col = c;
 	}
 	
-	public void move(char m)
+	public void move(char m, Space s)
 	{
 		// should only move one space
 		// move left or right depending on keyboard input
 		// check that we don't move out of bounds
 		if (m == 'R')
 		{
-			if(col < Space.getWidth())
+			if(col < s.getWidth())
 				col++;
 		}
 		else if(m == 'L')
