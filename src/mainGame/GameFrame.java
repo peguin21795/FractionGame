@@ -20,7 +20,7 @@ public class GameFrame extends JFrame{
 		setSize(WIDTH, LENGTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//We will need to add Space.java into the center of the JFrame.
-		Problem problem = new Problem("divide", 1);
+		Problem problem = new Problem("add", 3);
 		MissionControl ms = new MissionControl(problem);
 		add(ms, BorderLayout.SOUTH);
 

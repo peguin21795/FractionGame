@@ -41,6 +41,22 @@ public class MissionControl extends JPanel{
 
 		else
 		{
+			try
+			{
+				createFirstTermPanel(prob);
+				createAdditionSign();
+				createSecondTermPanel(prob);
+				createEqualsSign();
+				createSolutionTerm(prob);
+			}
+			catch (IOException ex)
+			{
+				System.out.println(ex.toString());
+			}
+			finally
+			{
+				setVisible(true);
+			}
 		}
 	}
 
@@ -80,6 +96,38 @@ public class MissionControl extends JPanel{
 		add(displayFraction);
 
 	}
+	
+	public void createSecondTermPanel(Problem prob) throws IOException{
+		setLayout(new GridLayout(1,2));
+		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+		wholeNumber = new JLabel();
+		wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+		wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+		if (prob.getSecond().getWholeNumber() == 0)
+		{
+			wholeNumber.setText("");
+		}
+		else
+		{
+			wholeNumber.setText(Integer.toString(prob.getFirst().getWholeNumber()));
+		}
+		add(wholeNumber);
+		JPanel displayFraction = new JPanel();
+		displayFraction.setLayout(new GridLayout(3, 1));
+		numerator = new JLabel();
+		numerator.setHorizontalAlignment(JTextField.CENTER);
+		numerator.setFont(numerator.getFont().deriveFont(28.0f));
+		denominator = new JLabel();
+		denominator.setHorizontalAlignment(JTextField.CENTER);
+		denominator.setFont(denominator.getFont().deriveFont(28.0f));
+		numerator.setText(Integer.toString(prob.getSecond().getNumerator()));
+		denominator.setText(Integer.toString(prob.getSecond().getDenominator()));
+		displayFraction.add(numerator);
+		displayFraction.add(fracLine);
+		displayFraction.add(denominator);
+		add(displayFraction);
+	}
 
 	public void createEqualsSign(){
 		JPanel equals = new JPanel();
@@ -95,10 +143,6 @@ public class MissionControl extends JPanel{
 			setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
-			fracLine.setFont(fracLine.getFont().deriveFont(24.0f));
-			fracLine.setFont(fracLine.getFont().deriveFont(Font.BOLD));
-			fracLine.setHorizontalAlignment(JTextField.CENTER);
-			fracLine.setVerticalAlignment(JTextField.TOP);
 			wholeNumber = new JLabel();
 			wholeNumber.setHorizontalAlignment(JTextField.CENTER);
 			wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
@@ -115,8 +159,10 @@ public class MissionControl extends JPanel{
 			displayFraction.setLayout(new GridLayout(3, 1));
 			numerator = new JLabel();
 			numerator.setHorizontalAlignment(JTextField.CENTER);
+			numerator.setFont(numerator.getFont().deriveFont(28.0f));
 			denominator = new JLabel();
 			denominator.setHorizontalAlignment(JTextField.CENTER);
+			denominator.setFont(denominator.getFont().deriveFont(28.0f));
 			if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0)
 			{
 				numerator.setText(Integer.toString(prob.getSolution().getNumerator()));
@@ -149,6 +195,16 @@ public class MissionControl extends JPanel{
 		add.setFont(add.getFont().deriveFont(60.0f));
 		addition.add(add);
 		add(addition);
+	}
+	
+	public void createSubtractionSign(){
+		{
+			JPanel subtraction = new JPanel();
+			JLabel sub = new JLabel("+");
+			sub.setFont(sub.getFont().deriveFont(60.0f));
+			subtraction.add(sub);
+			add(subtraction);
+		}
 	}
 
 	public void progressDisplay(){

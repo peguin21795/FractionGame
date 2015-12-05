@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import mainFrame.GameFrame;
+//import mainFrame.GameFrame;
 
 public class Space extends JPanel 
 {
