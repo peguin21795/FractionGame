@@ -19,13 +19,29 @@ public class MissionControl extends JPanel{
 	{
 		//	prob = null;
 	}
-	public MissionControl(Problem prob) throws IOException{
+	public MissionControl(Problem prob){
 		//this.prob = prob;
-		createFirstTermPanel(prob);
-		createEqualsSign();
-		createSolutionTerm(prob);
-		setVisible(true);
+		if (prob.getSecond() == null)
+		{
+			try
+			{
+				createFirstTermPanel(prob);
+				createEqualsSign();
+				createSolutionTerm(prob);
+			}
+			catch (IOException ex)
+			{
+				System.out.println(ex.toString());
+			}
+			finally
+			{
+				setVisible(true);
+			}
+		}
 
+		else
+		{
+		}
 	}
 
 	public Problem generateProblem(){
@@ -33,15 +49,9 @@ public class MissionControl extends JPanel{
 	}
 
 	public void createFirstTermPanel(Problem prob) throws IOException{
-		//JPanel firstPanel = new JPanel();
 		setLayout(new GridLayout(1,2));
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
-		//JLabel fracLine = new JLabel("");
-		//fracLine.setFont(fracLine.getFont().deriveFont(24.0f));
-		//fracLine.setFont(fracLine.getFont().deriveFont(Font.BOLD));
-		//fracLine.setHorizontalAlignment(JTextField.CENTER);
-		//fracLine.setVerticalAlignment(JTextField.TOP);
 		wholeNumber = new JLabel();
 		wholeNumber.setHorizontalAlignment(JTextField.CENTER);
 		wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
@@ -130,6 +140,15 @@ public class MissionControl extends JPanel{
 		quest.setFont(quest.getFont().deriveFont(60.0f));
 		question.add(quest);
 		add(question);
+	}
+
+	public void createAdditionSign()
+	{
+		JPanel addition = new JPanel();
+		JLabel add = new JLabel("+");
+		add.setFont(add.getFont().deriveFont(60.0f));
+		addition.add(add);
+		add(addition);
 	}
 
 	public void progressDisplay(){

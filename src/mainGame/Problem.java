@@ -12,14 +12,19 @@ public class Problem extends JPanel{
 	
 	/* The second term will be used if necessary for certain problems.*/
 	private Term first, second, solution;
+	private String operation;
+	private int level;
 	//private int remainder;
 	
 	/* A string will be passed into the constructor to determine the type of 
 	 * problem that needs to be generated. An integer will also be passed to set 
 	 * the appropriate level. */
+	
 	public Problem(String operation, int level)
 	{
 //		displayProblem();
+		this.operation = operation;
+		this.level = level;
 		if(operation == "divide")
 			callDivide(level);
 		if(operation == "factor")
@@ -30,6 +35,16 @@ public class Problem extends JPanel{
 			callSubtract(level);
 		else
 			callHardest(level);
+	}
+	
+	public String getOperation()
+	{
+		return operation;
+	}
+	
+	public int getLevel()
+	{
+		return level;
 	}
 	
 	public Term getFirst() {

@@ -10,11 +10,13 @@ import mainGame.Space;
 
 public class MovementTest {
 	private Player p;
+	private Space s;
 	
 	@Before
 	public void init()
 	{
 		p = new Player();
+		s = new Space();
 	}
 	
 	@Test	
@@ -26,14 +28,14 @@ public class MovementTest {
 		// Move way too far and make sure we stay at last moveable space
 		for(int i = 0; i < 200; i++)
 		{
-			p.move('R'); //assume moving right, not implemented yet
+			p.move('R', s); //assume moving right, not implemented yet
 		}
-		assertEquals(p.getCol(), Space.getWidth());
+		assertEquals(p.getCol(), s.getWidth());
 		
 		// Move way too far other way and make sure we stay at last moveable space on that side
 		for(int i = 0; i < 200; i++)
 		{
-			p.move('L'); //assume moving left, not implemented yet
+			p.move('L', s); //assume moving left, not implemented yet
 		}
 		assertEquals(p.getCol(), 0);
 	}
@@ -45,13 +47,13 @@ public class MovementTest {
 		// Also checks that one call to move only moves us one space
 		
 		int temp = p.getCol();
-		p.move('R'); //assume we move right
+		p.move('R', s); //assume we move right
 		assertEquals(p.getCol(), temp + 1);
-		p.move('R'); //assume we move right
+		p.move('R', s); //assume we move right
 		assertEquals(p.getCol(), temp + 2);
-		p.move('L'); //assume we move left
+		p.move('L', s); //assume we move left
 		assertEquals(p.getCol(), temp + 1);
-		p.move('L'); //assume we move left
+		p.move('L', s); //assume we move left
 		assertEquals(p.getCol(), temp);
 	}
 }
