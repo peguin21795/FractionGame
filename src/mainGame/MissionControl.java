@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 public class MissionControl extends JPanel{
 	private JLabel wholeNumber,numerator,denominator;
-	private Boolean shootCorrectFlag = false;
+	private boolean shootCorrectFlag = false;
 	public MissionControl()
 	{
 		//	prob = null;
@@ -27,7 +27,7 @@ public class MissionControl extends JPanel{
 			{
 				createFirstTermPanel(prob);
 				createEqualsSign();
-				createSolutionTerm(prob);
+				createSolutionTermPanel(prob);
 			}
 			catch (IOException ex)
 			{
@@ -47,7 +47,7 @@ public class MissionControl extends JPanel{
 				createAdditionSign();
 				createSecondTermPanel(prob);
 				createEqualsSign();
-				createSolutionTerm(prob);
+				createSolutionTermPanel(prob);
 			}
 			catch (IOException ex)
 			{
@@ -137,7 +137,7 @@ public class MissionControl extends JPanel{
 		add(equals);
 	}
 
-	public void createSolutionTerm(Problem prob) throws IOException{
+	public void createSolutionTermPanel(Problem prob) throws IOException{
 		if (shootCorrectFlag)
 		{
 			setLayout(new GridLayout(1,2));
@@ -215,8 +215,8 @@ public class MissionControl extends JPanel{
 
 	}
 
-	public ArrayList<SpaceTarget> generateTargets(){
-		return null;
-	}
+//	public ArrayList<SpaceTarget> generateTargets(){
+//		return null;
+//	}
 
 }

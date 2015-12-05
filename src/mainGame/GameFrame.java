@@ -23,6 +23,8 @@ public class GameFrame extends JFrame{
 		Problem problem = new Problem("add", 3);
 		MissionControl ms = new MissionControl(problem);
 		add(ms, BorderLayout.SOUTH);
+		Sound soundTest = new Sound();
+		add(soundTest, BorderLayout.NORTH);
 
 	}
 
