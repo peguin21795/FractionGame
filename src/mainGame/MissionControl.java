@@ -138,7 +138,7 @@ public class MissionControl extends JPanel{
 	}
 
 	public void createSolutionTermPanel(Problem prob) throws IOException{
-		if (shootCorrectFlag)
+		if (true)
 		{
 			setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));

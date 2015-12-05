@@ -14,8 +14,8 @@ import mainGame.Space;
 
 public class GameFrame extends JFrame{
 
-	final static int WIDTH = 500;
-	final static int LENGTH = 500;
+	final static int WIDTH = 1000;
+	final static int LENGTH = 1000;
 	//private static Space space;
 
 	public GameFrame() 
@@ -26,7 +26,7 @@ public class GameFrame extends JFrame{
 		//We will need to add Space.java into the center of the JFrame.
 		//space = new Space();
 		Space test = new Space();
-		Problem problem = new Problem("add", 3);
+		Problem problem = new Problem("factor", 1);
 		MissionControl ms = new MissionControl(problem);
 		add(ms, BorderLayout.SOUTH);
 		add(test, BorderLayout.CENTER);

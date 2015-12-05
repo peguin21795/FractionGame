@@ -12,14 +12,16 @@ public class Space extends JPanel
 	private int cols;
 	private SpaceCell[][] board;
 	private Player ship;
+	private final static int BOARD_WIDTH = 500;
+	private final static int BOARD_HEIGHT = 500;
 	
 	public Space()
 	{
 		rows = 10;
-		cols = 10;
+		cols = 12;
 		ship = new Player(9, 5);
 		initCells();
-		Dimension d = new Dimension(500, 500);
+		Dimension d = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
 		setPreferredSize(d);
 		setVisible(true);
 	}
@@ -30,8 +32,8 @@ public class Space extends JPanel
 		super.paintComponent(g);
 		
 		//Calculate the size of each space cell
-		int cellWidth = 500/cols;
-		int cellHeight = 500/rows;
+		int cellWidth = BOARD_WIDTH/cols;
+		int cellHeight = BOARD_HEIGHT/rows;
 				
 		//Draw all the space cells
 		for(int i = 0; i < rows; i++)
@@ -47,6 +49,10 @@ public class Space extends JPanel
 		//Draw the player
 		board[ship.getRow()][ship.getCol()].drawPlayer(g, cellWidth, cellHeight);
 		
+		//Draw the targets
+		Problem problem = new Problem("factor", 1);
+		board[1][7].drawTarget(g, cellWidth, cellHeight, problem);
+		
 	}
 	
 	public void initCells()
@@ -56,7 +62,7 @@ public class Space extends JPanel
 		{
 			for(int j = 0; j < cols; j++ )
 			{
-				board[i][j] = new SpaceCell(i, j, 0);
+				board[i][j] = new SpaceCell(i, j, null);
 			}
 		}
 	}
