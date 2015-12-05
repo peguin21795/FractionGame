@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 public class MissionControl extends JPanel{
 	private JLabel wholeNumber,numerator,denominator;
 	private boolean shootCorrectFlag = false;
+	private ArrayList<Integer> usedCols;
 	public MissionControl()
 	{
 		//	prob = null;
@@ -215,8 +217,42 @@ public class MissionControl extends JPanel{
 
 	}
 
-	public ArrayList<SpaceTarget> generateTargets(){
-		return null;
+	public ArrayList<SpaceTarget> generateTargets()
+	{
+		//Initialize the used cols array list
+		usedCols = new ArrayList<Integer>();
+		
+		//Initialize the array list to be returned
+		ArrayList<SpaceTarget> targets = new ArrayList<SpaceTarget>();
+		Random generator = new Random();
+		Problem correct = new Problem("factor", 1);
+		
+		//Generate a random position for the target
+		int x = generator.nextInt(2);
+		int y = generator.nextInt(12);
+		usedCols.add(y);
+		targets.add(new SpaceTarget(x, y, correct.getSolution().getNumerator()));
+		int solution = correct.getSolution().getNumerator();
+		
+		//Generate other random incorrect targets
+		for(int i = 0; i < 6; i++)
+		{
+			int wrong = generator.nextInt(20);
+			while(wrong == solution)
+			{
+				wrong = generator.nextInt(20);
+			}
+			x = generator.nextInt(4);
+			y = generator.nextInt(12);
+			while(usedCols.contains(y))
+			{
+				y = generator.nextInt(12);
+			}
+			targets.add(new SpaceTarget(x, y, wrong));
+			usedCols.add(y);
+		}
+		
+		return targets;
 	}
 
 }

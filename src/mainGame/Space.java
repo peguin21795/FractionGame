@@ -3,6 +3,7 @@ package mainGame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -14,9 +15,13 @@ public class Space extends JPanel
 	private Player ship;
 	private final static int BOARD_WIDTH = 500;
 	private final static int BOARD_HEIGHT = 500;
+	private MissionControl control;
+	private ArrayList<SpaceTarget> targets;
 	
-	public Space()
+	public Space(MissionControl ms)
 	{
+		control = ms;
+		targets = control.generateTargets();
 		rows = 10;
 		cols = 12;
 		ship = new Player(9, 5);
@@ -50,8 +55,11 @@ public class Space extends JPanel
 		board[ship.getRow()][ship.getCol()].drawPlayer(g, cellWidth, cellHeight);
 		
 		//Draw the targets
-		Problem problem = new Problem("factor", 1);
-		board[1][7].drawTarget(g, cellWidth, cellHeight, problem);
+		for(SpaceTarget s : targets)
+		{
+			board[s.getRow()][s.getCol()].drawTarget(g, cellWidth, cellHeight, s.getTargetNumber());
+		}
+		
 		
 	}
 	
@@ -66,4 +74,5 @@ public class Space extends JPanel
 			}
 		}
 	}
+	
 }

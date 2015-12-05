@@ -44,16 +44,15 @@ public class SpaceCell
 		g.fillOval(x, y, cellWidth,  cellHeight);
 	}
 	
-	public void drawTarget(Graphics g, int cellWidth, int cellHeight, Problem problem)
+	public void drawTarget(Graphics g, int cellWidth, int cellHeight, int printTarget)
 	{
 		int x = cellWidth * this.col;
 		int y = cellHeight * this.row;
-		setTarget(problem.getSolution());
-		String test = Integer.toString(target.getNumerator());
+		String output = Integer.toString(printTarget);
 		g.setColor(Color.WHITE);
 		Font myFont = new Font("Serif", Font.BOLD, 24);
 		g.setFont(myFont);
-		g.drawString(test, x + 15, y - 20);
+		g.drawString(output, x + 5, y + 30);
 	}
 	
 	public void drawLaser()

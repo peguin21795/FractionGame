@@ -7,18 +7,20 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import mainGame.MissionControl;
 import mainGame.Player;
 import mainGame.Space;
 
 public class MovementTest {
 	private Player p;
 	private Space s;
+	private MissionControl mc = new MissionControl();
 	
 	@Before
 	public void init() throws IOException
 	{
 		p = new Player();
-		s = new Space();
+		s = new Space(mc);
 	}
 	
 	@Test	
