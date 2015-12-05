@@ -19,7 +19,7 @@ public class Problem extends JPanel{
 	 * the appropriate level. */
 	public Problem(String operation, int level)
 	{
-		displayProblem();
+//		displayProblem();
 		if(operation == "divide")
 			callDivide(level);
 		if(operation == "factor")
@@ -49,7 +49,7 @@ public class Problem extends JPanel{
 		if(level == 1)
 		{
 			Random rn = new Random(System.nanoTime());
-			int one = (rn.nextInt(100)+1)/10;
+			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(10)+1);
 			int three = one * two;
 			this.first = new Term(three,two);
@@ -259,12 +259,12 @@ public class Problem extends JPanel{
 		return null; 
 	}
 	
-	public void displayProblem()
+	/*public void displayProblem()
 	{
 		setLayout(new GridLayout(2, 1));
 		add(new JLabel("Solve this problem!"));
-		/*The problem will be displayed here*/
-	}
+		The problem will be displayed here
+	}*/
 	
 	public Problem(int one, int two, int three)
 	{
