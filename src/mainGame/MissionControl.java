@@ -215,8 +215,8 @@ public class MissionControl extends JPanel{
 
 	}
 
-//	public ArrayList<SpaceTarget> generateTargets(){
-//		return null;
-//	}
+	public ArrayList<SpaceTarget> generateTargets(){
+		return null;
+	}
 
 }
