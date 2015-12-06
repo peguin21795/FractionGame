@@ -71,7 +71,7 @@ public class Space extends JPanel implements KeyListener
 		if(playerShot)
 		{
 			laser = new Laser(ship, this);
-			SpaceTarget temp = new SpaceTarget(0, 0, 0);
+			SpaceTarget temp = new SpaceTarget(-1, -1, 0);
 			for (SpaceTarget t : targets)
 			{
 				if (t.getCol() == ship.getCol())
@@ -86,9 +86,7 @@ public class Space extends JPanel implements KeyListener
 				board[laser.getRow()][laser.getCol()].drawLaser(g, cellWidth, cellHeight);
 				laser.updateLocation();
 			}
-		}
-		
-		
+		}		
 		
 	}
 	
