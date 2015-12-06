@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+//This class generates problems or reads in a problem set from a file. the problems are made
+//up of terms (see Term class) subtraction problems of all levels are read in from a file.
+//there are four types of problems (division, factorization, addition, subtraction).  In
+//addition, each type of problem has three difficulty levels.
 public class Problem extends JPanel{
 	
 	/* The second term will be used if necessary for certain problems.*/
@@ -40,14 +44,16 @@ public class Problem extends JPanel{
 			callAddition(level);
 		if(operation == "subtract")
 			callSubtract(level);
-		else
-			callHardest(level);
 	}
+	
+	//this second constructor is for the subtraction function to use because this method is
+	//not generating problems, it is reading the problems in from a txt file.
 	public Problem(Term one, Term two, Term solution){
 		this.first = one;
 		this.second = two;
 		this.solution = solution;
 	}
+	
 	
 	public String getOperation()
 	{
@@ -71,6 +77,8 @@ public class Problem extends JPanel{
 		return solution;
 	}
 
+	//this is called by the constructor to generate problem sets of the division type of all
+	//levels 1 thru 3.
 	private void callDivide(int level)
 	{
 		if(level == 1)
@@ -111,6 +119,8 @@ public class Problem extends JPanel{
 		}
 	}
 	
+	//This is the function called by the constructor to generate problems set of the type factorization
+	//of all levels.
 	private void callFactor(int level)
 	{
 		if (level == 1)
@@ -158,9 +168,9 @@ public class Problem extends JPanel{
 			System.err.println("INVALID LEVEL!!");
 		}
 	}
-	
+	//The first level is simple addition of fractions with common denominator, 
+	//and the answer is left as an improper fraction.
 	private void callAddition(int level)
-	//this level is simple addition of fractions with common denominator, and the answer is left as an improper fraction.
 	{
 		if(level == 1)
 		{
@@ -218,6 +228,9 @@ public class Problem extends JPanel{
 			System.err.println("INVALID LEVEL!!");
 		}
 	}
+	
+	//this function is called by the constructor to provide a problem set of the subtraction
+	//type.  this function does NOT generate the problems, it will read them in from a text file.
 	private void callSubtract(int level) 
 	{
 		try {
@@ -249,6 +262,8 @@ public class Problem extends JPanel{
 		}
 	}
 	
+	//This is called by the subtraction problem set generator function to read in the info
+	//from a text file that will supply the equations needed.
 	private void loadSubtractionFile() throws FileNotFoundException{
 		FileReader reader = new FileReader("subtraction_problems.txt");
 		ArrayList<Problem> temp = new ArrayList<Problem>();
@@ -275,15 +290,6 @@ public class Problem extends JPanel{
 				subLevel3.add(temp.get(i));
 			}
 		}
-	}
-
-	private void callHardest(int level){
-		
-	}
-	
-	public Boolean checkAnswer(int selectedAnswer)
-	{
-		return null; 
 	}
 	
 }
