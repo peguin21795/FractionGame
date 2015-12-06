@@ -302,8 +302,7 @@ public class MissionControl extends JPanel{
 
 	public void updateDisplay(Problem p)
 	{
-		this.repaint();
-		setVisible(true);
+		
 	}
 
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
