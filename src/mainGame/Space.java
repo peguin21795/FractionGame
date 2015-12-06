@@ -153,6 +153,12 @@ public class Space extends JPanel implements KeyListener
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getRows() {
+		return rows;
+	}
+	
+	
 	
 	
 	

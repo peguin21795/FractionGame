@@ -25,7 +25,7 @@ public class Player implements Movable{
 		// check that we don't move out of bounds
 		if (m == 'R')
 		{
-			if(col < s.getWidth())
+			if(col < s.getRows() + 1)
 				col++;
 		}
 		else if(m == 'L')
