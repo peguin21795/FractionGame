@@ -330,22 +330,83 @@ public class MissionControl extends JPanel{
 
 	public void updateDisplay(Problem p)
 	{
-		try {
-			this.removeAll();
-			this.repaint();
-			firstPanel = createFirstTermPanel(p);
-			this.add(firstPanel);
-			this.revalidate();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		this.removeAll();
+		this.repaint();
+		if (p.getSecond() == null)
+		{
+			try
+			{
+				firstPanel = createFirstTermPanel(p);
+				add(firstPanel);
+				operatorPanel = createEqualsSign();
+				add(operatorPanel);
+				solutionPanel = createSolutionTermPanel(p);
+				add(solutionPanel);
+			}
+			catch (IOException ex)
+			{
+				System.out.println(ex.toString());
+			}
+			finally
+			{
+				setVisible(true);
+			}
 		}
-	//	this.repaint();
-
+		else
+		{
+			if (p.getOperation() == "subtract")
+			{
+				try
+				{
+					firstPanel = createFirstTermPanel(p);
+					add(firstPanel);
+					operatorPanel = createSubtractionSign();
+					add(operatorPanel);
+					secondPanel = createSecondTermPanel(p);
+					add(secondPanel);
+					equalsPanel = createEqualsSign();
+					solutionPanel = createSolutionTermPanel(p);
+					add(solutionPanel);
+				}
+				catch (IOException ex)
+				{
+					System.out.println(ex.toString());
+				}
+				finally
+				{
+					setVisible(true);
+				}
+			}
+			else
+			{
+				try
+				{
+					firstPanel =createFirstTermPanel(p);
+					add(firstPanel);
+					operatorPanel = createAdditionSign();
+					add(operatorPanel);
+					secondPanel = createSecondTermPanel(p);
+					add(secondPanel);
+					equalsPanel = createEqualsSign();
+					add(equalsPanel);
+					solutionPanel = createSolutionTermPanel(p);
+					add(solutionPanel);
+				}
+				catch (IOException ex)
+				{
+					System.out.println(ex.toString());
+				}
+				finally
+				{
+					setVisible(true);
+				}
+			}
+		}
+		this.revalidate();
 	}
 
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
-	{
+	{	
 		//Initialize the used cols array list
 		usedCols = new ArrayList<Integer>();
 
@@ -357,25 +418,70 @@ public class MissionControl extends JPanel{
 		int x = generator.nextInt(2);
 		int y = generator.nextInt(12);
 		usedCols.add(y);
-		targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
-		int solution = p.getSolution().getWholeNumber();
+		int solution = -1;
+		float solutionFloat = -1;
+		if(p.getOperation().equals("divide") && p.getLevel() == 1)
+		{
+			targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
+			solution = p.getSolution().getWholeNumber();
+		}
+		else if((p.getOperation().equals("divide") && p.getLevel() == 3) || 
+				(p.getOperation().equals("factor") && p.getLevel() == 1) ||
+				(p.getOperation().equals("add") && p.getLevel() == 1) ||
+				(p.getOperation().equals("subtract") && p.getLevel() == 1))
+		{
+			targets.add(new SpaceTarget(x, y, p.getSolution().getNumerator()));
+			solution = p.getSolution().getNumerator();
+			//div level 2: float, wholenumber
+			//factor level 2/3: whole number and numerator
+			//add level 2/3: whole number and numerator if > 1
+			//sub level 2/3: whole number, numerator 
+			
+		}
+		else if(p.getOperation().equals("divide") && p.getLevel() == 2)
+		{
+			targets.add(new SpaceTarget(x, y, p.getSolution().getDecimal()));
+			solutionFloat = p.getSolution().getDecimal();
+		}
+		else
+		{
+		}
 
 		//Generate other random incorrect targets
 		for(int i = 0; i < 6; i++)
 		{
-			int wrong = generator.nextInt(20);
-			while(wrong == solution)
+			if(solutionFloat == -1)
 			{
-				wrong = generator.nextInt(20);
-			}
-			x = generator.nextInt(4);
-			y = generator.nextInt(12);
-			while(usedCols.contains(y))
-			{
+				int wrong = generator.nextInt(20);
+				while(wrong == solution)
+				{
+					wrong = generator.nextInt(20);
+				}
+				x = generator.nextInt(4);
 				y = generator.nextInt(12);
+				while(usedCols.contains(y))
+				{
+					y = generator.nextInt(12);
+				}
+				targets.add(new SpaceTarget(x, y, wrong));
+				usedCols.add(y);
 			}
-			targets.add(new SpaceTarget(x, y, wrong));
-			usedCols.add(y);
+			else
+			{
+				float wrong = generator.nextFloat();
+				while(wrong == solution)
+				{
+					wrong = generator.nextFloat();
+				}
+				x = generator.nextInt(4);
+				y = generator.nextInt(12);
+				while(usedCols.contains(y))
+				{
+					y = generator.nextInt(12);
+				}
+				targets.add(new SpaceTarget(x, y, wrong));
+				usedCols.add(y);
+			}
 		}
 
 		return targets;

@@ -72,7 +72,14 @@ public class Space extends JPanel implements KeyListener
 		//Draw the targets
 		for(SpaceTarget s : targets)
 		{
-			board[s.getRow()][s.getCol()].drawTarget(g, cellWidth, cellHeight, s.getTargetNumber());
+			if(problems.get(currentProblem).getOperation().equals("divide") && problems.get(currentProblem).getLevel() == 2)
+			{
+				board[s.getRow()][s.getCol()].drawTarget(g, cellWidth, cellHeight, s.getTargetFloat());
+			}
+			else
+			{
+				board[s.getRow()][s.getCol()].drawTarget(g, cellWidth, cellHeight, s.getTargetNumber());
+			}
 		}
 		
 		//Draw laser if necessary

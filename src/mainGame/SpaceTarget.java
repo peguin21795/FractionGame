@@ -3,6 +3,7 @@ package mainGame;
 public class SpaceTarget implements Movable{
 	
 	private int targetNumber;
+	private float targetFloat;
 	private int row;
 	private int col;
 	
@@ -18,6 +19,13 @@ public class SpaceTarget implements Movable{
 		row = r;
 		col = c;
 		this.targetNumber = targetNumber;
+	}
+	
+	public SpaceTarget(int r, int c, float targetFloat)
+	{
+		row = r;
+		col = c;
+		this.targetFloat = targetFloat;
 	}
 	
 	public void move(char m, Space s){
@@ -48,6 +56,16 @@ public class SpaceTarget implements Movable{
 	public void setCol(int col) {
 		this.col = col;
 	}
+
+	public float getTargetFloat() {
+		return targetFloat;
+	}
+
+	public void setTargetFloat(float targetFloat) {
+		this.targetFloat = targetFloat;
+	}
+	
+	
 	
 
 }

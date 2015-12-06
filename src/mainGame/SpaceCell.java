@@ -55,6 +55,19 @@ public class SpaceCell
 		g.drawString(output, x + 5, y + 30);
 	}
 	
+	public void drawTarget(Graphics g, int cellWidth, int cellHeight, float printTarget)
+	{
+		int x = cellWidth * this.col;
+		int y = cellHeight * this.row;
+		printTarget = (float) (Math.floor(printTarget*1000)/1000);
+		//String.format("%.2f", printTarget);
+		String output = Float.toString(printTarget);
+		g.setColor(Color.WHITE);
+		Font myFont = new Font("Serif", Font.BOLD, 12);
+		g.setFont(myFont);
+		g.drawString(output, x + 5, y + 30);
+	}
+	
 	public void drawLaser(Graphics g, int cellWidth, int cellHeight)
 	{
 		// draw as a line to the target
