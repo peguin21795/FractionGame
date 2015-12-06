@@ -258,10 +258,7 @@ public class Problem extends JPanel{
 				ArrayList<Integer> terms = new ArrayList<Integer>();
 				for (int i=0; i<termsRead.length;++i){
 					terms.add(Integer.parseInt(termsRead[i]));
-			//		if(i==0 || i==3)
-	//				System.out.println(terms[i]);
 				}
-//				System.out.println(terms.toString());
 				Term termFirst = new Term(terms.get(0), terms.get(1), terms.get(2));
 				Term termSecond = new Term(terms.get(3), terms.get(4), terms.get(5));
 				Term termSolution = new Term(terms.get(6), terms.get(7), terms.get(8));
@@ -289,10 +286,4 @@ public class Problem extends JPanel{
 		return null; 
 	}
 	
-	public Problem(int one, int two, int three)
-	{
-		first = new Term(one);
-		second = new Term(two);
-		solution = new Term(three);
-	}
 }

@@ -15,14 +15,14 @@ import javax.swing.JTextField;
 
 public class MissionControl extends JPanel{
 	private JLabel wholeNumber,numerator,denominator;
-	private boolean shootCorrectFlag = false;
+	private boolean showCorrectWholeFlag = false;
+	private boolean showCorrectNumFlag = false;
 	private ArrayList<Integer> usedCols;
 	public MissionControl()
 	{
 		//	prob = null;
 	}
 	public MissionControl(Problem prob){
-		//this.prob = prob;
 		if (prob.getSecond() == null)
 		{
 			try
@@ -40,7 +40,6 @@ public class MissionControl extends JPanel{
 				setVisible(true);
 			}
 		}
-
 		else
 		{
 			if (prob.getOperation() == "subtract")
@@ -82,10 +81,6 @@ public class MissionControl extends JPanel{
 				}
 			}
 		}
-	}
-
-	public Problem generateProblem(){
-		return null;
 	}
 
 	public void createFirstTermPanel(Problem prob) throws IOException{
@@ -162,7 +157,7 @@ public class MissionControl extends JPanel{
 	}
 
 	public void createSolutionTermPanel(Problem prob) throws IOException{
-		if (true)
+		if (showCorrectWholeFlag == true && showCorrectNumFlag == true)
 		{
 			setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
@@ -198,11 +193,81 @@ public class MissionControl extends JPanel{
 
 			add(displayFraction);
 		}
+		else if (showCorrectWholeFlag == true)
+		{
+			setLayout(new GridLayout(1,2));
+			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+			wholeNumber = new JLabel();
+			wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+			wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+			if (prob.getSolution().getWholeNumber() == 0)
+			{
+				wholeNumber.setText("");
+			}
+			else
+			{
+				wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
+			}
+			add(wholeNumber);
+			JPanel displayFraction = new JPanel();
+			displayFraction.setLayout(new GridLayout(3, 1));
+			numerator = new JLabel();
+			numerator.setHorizontalAlignment(JTextField.CENTER);
+			numerator.setFont(numerator.getFont().deriveFont(28.0f));
+			denominator = new JLabel();
+			denominator.setHorizontalAlignment(JTextField.CENTER);
+			denominator.setFont(denominator.getFont().deriveFont(28.0f));
+			if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0)
+			{
+				numerator.setText("?");
+				denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+				displayFraction.add(numerator);
+				displayFraction.add(fracLine);
+				displayFraction.add(denominator);
+			}
+
+			add(displayFraction);
+		}
 		else
 		{
-			createQuestionMark();
+			setLayout(new GridLayout(1,2));
+			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+			wholeNumber = new JLabel();
+			wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+			wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+			if (prob.getSolution().getWholeNumber() == 0)
+			{
+				wholeNumber.setText("");
+			}
+			else
+			{
+				wholeNumber.setText("?");
+			}
+			add(wholeNumber);
+			JPanel displayFraction = new JPanel();
+			displayFraction.setLayout(new GridLayout(3, 1));
+			numerator = new JLabel();
+			numerator.setHorizontalAlignment(JTextField.CENTER);
+			numerator.setFont(numerator.getFont().deriveFont(28.0f));
+			denominator = new JLabel();
+			denominator.setHorizontalAlignment(JTextField.CENTER);
+			denominator.setFont(denominator.getFont().deriveFont(28.0f));
+			if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0)
+			{
+				numerator.setText("?");
+				denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+				displayFraction.add(numerator);
+				displayFraction.add(fracLine);
+				displayFraction.add(denominator);
+			}
+
+			add(displayFraction);
 		}
+		//createQuestionMark();
 	}
+
 
 	public void createQuestionMark(){
 		JPanel question = new JPanel();
@@ -215,7 +280,7 @@ public class MissionControl extends JPanel{
 	public void createAdditionSign()
 	{
 		JPanel addition = new JPanel();
-		JLabel add = new JLabel("+");
+		JLabel add = new JLabel("  +");
 		add.setFont(add.getFont().deriveFont(60.0f));
 		addition.add(add);
 		add(addition);
@@ -224,7 +289,7 @@ public class MissionControl extends JPanel{
 	public void createSubtractionSign(){
 		{
 			JPanel subtraction = new JPanel();
-			JLabel sub = new JLabel("-");
+			JLabel sub = new JLabel("  -");
 			sub.setFont(sub.getFont().deriveFont(60.0f));
 			subtraction.add(sub);
 			add(subtraction);

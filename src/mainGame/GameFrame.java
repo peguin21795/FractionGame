@@ -26,10 +26,11 @@ public class GameFrame extends JFrame{
 		//We will need to add Space.java into the center of the JFrame.
 		Problem problem = new Problem("subtract", 2);
 		MissionControl ms = new MissionControl(problem);
+		StatusPanel sp = new StatusPanel();
 		Space space = new Space(ms);
 		add(ms, BorderLayout.SOUTH);
 		add(space, BorderLayout.CENTER);
-		
+		add(sp, BorderLayout.EAST);
 		addKeyListener(space);
 		//Sound soundTest = new Sound();
 		//add(soundTest, BorderLayout.NORTH);
