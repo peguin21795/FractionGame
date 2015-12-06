@@ -28,6 +28,12 @@ public class Term {
 		this.wholeNumber = 0;
 		this.decimal = 0;
 	}
+	public Term(int whole, int numer, int denom){
+		this.numerator = numer;
+		this.denominator = denom;
+		this.wholeNumber = whole;
+		this.decimal = 0;
+	}
 	
 	/*The getters and setters are for testing purposes only.*/
 	public int getDenominator()

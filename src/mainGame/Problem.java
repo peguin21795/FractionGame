@@ -1,7 +1,12 @@
 package mainGame;
 
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +19,9 @@ public class Problem extends JPanel{
 	private Term first, second, solution;
 	private String operation;
 	private int level;
+	private ArrayList<Problem> subLevel1 = new ArrayList<Problem>();
+	private ArrayList<Problem> subLevel2 = new ArrayList<Problem>();
+	private ArrayList<Problem> subLevel3 = new ArrayList<Problem>();
 	
 	/* A string will be passed into the constructor to determine the type of 
 	 * problem that needs to be generated. An integer will also be passed to set 
@@ -34,6 +42,11 @@ public class Problem extends JPanel{
 			callSubtract(level);
 		else
 			callHardest(level);
+	}
+	public Problem(Term one, Term two, Term solution){
+		this.first = one;
+		this.second = two;
+		this.solution = solution;
 	}
 	
 	public String getOperation()
@@ -205,10 +218,68 @@ public class Problem extends JPanel{
 			System.err.println("INVALID LEVEL!!");
 		}
 	}
-	private void callSubtract(int level)
+	private void callSubtract(int level) 
 	{
-		
+		try {
+			loadSubtractionFile();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(level == 1){
+			Random rn = new Random();
+			int j = rn.nextInt(subLevel1.size());
+			this.first = subLevel1.get(j).getFirst();
+			this.second = subLevel1.get(j).getSecond();
+			this.solution = subLevel1.get(j).getSolution();
+		}
+		else if(level == 2){
+			Random rn = new Random();
+			int j = rn.nextInt(subLevel2.size());
+			this.first = subLevel2.get(j).getFirst();
+			this.second = subLevel2.get(j).getSecond();
+			this.solution = subLevel2.get(j).getSolution();
+		}
+		else{
+			Random rn = new Random();
+			int j = rn.nextInt(subLevel3.size());
+			this.first = subLevel3.get(j).getFirst();
+			this.second = subLevel3.get(j).getSecond();
+			this.solution = subLevel3.get(j).getSolution();
+		}
 	}
+	
+	private void loadSubtractionFile() throws FileNotFoundException{
+		FileReader reader = new FileReader("subtraction_problems.txt");
+		ArrayList<Problem> temp = new ArrayList<Problem>();
+		Scanner in = new Scanner(reader);
+		while(in.hasNextLine()){
+				String[] termsRead = in.nextLine().split(",");
+				ArrayList<Integer> terms = new ArrayList<Integer>();
+				for (int i=0; i<termsRead.length;++i){
+					terms.add(Integer.parseInt(termsRead[i]));
+			//		if(i==0 || i==3)
+	//				System.out.println(terms[i]);
+				}
+//				System.out.println(terms.toString());
+				Term termFirst = new Term(terms.get(0), terms.get(1), terms.get(2));
+				Term termSecond = new Term(terms.get(3), terms.get(4), terms.get(5));
+				Term termSolution = new Term(terms.get(6), terms.get(7), terms.get(8));
+				temp.add(new Problem(termFirst, termSecond, termSolution));
+			}
+		for(int i=0; i<temp.size();++i){
+			if(i<10){
+				subLevel1.add(temp.get(i));
+			}
+			else if(i>9 && i<20){
+				subLevel2.add(temp.get(i));
+			}
+			else{
+				subLevel3.add(temp.get(i));
+			}
+		}
+	}
+
 	private void callHardest(int level){
 		
 	}

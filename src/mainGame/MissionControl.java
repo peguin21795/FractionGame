@@ -43,21 +43,43 @@ public class MissionControl extends JPanel{
 
 		else
 		{
-			try
+			if (prob.getOperation() == "subtract")
 			{
-				createFirstTermPanel(prob);
-				createAdditionSign();
-				createSecondTermPanel(prob);
-				createEqualsSign();
-				createSolutionTermPanel(prob);
+				try
+				{
+					createFirstTermPanel(prob);
+					createSubtractionSign();
+					createSecondTermPanel(prob);
+					createEqualsSign();
+					createSolutionTermPanel(prob);
+				}
+				catch (IOException ex)
+				{
+					System.out.println(ex.toString());
+				}
+				finally
+				{
+					setVisible(true);
+				}
 			}
-			catch (IOException ex)
+			else
 			{
-				System.out.println(ex.toString());
-			}
-			finally
-			{
-				setVisible(true);
+				try
+				{
+					createFirstTermPanel(prob);
+					createAdditionSign();
+					createSecondTermPanel(prob);
+					createEqualsSign();
+					createSolutionTermPanel(prob);
+				}
+				catch (IOException ex)
+				{
+					System.out.println(ex.toString());
+				}
+				finally
+				{
+					setVisible(true);
+				}
 			}
 		}
 	}
@@ -98,7 +120,7 @@ public class MissionControl extends JPanel{
 		add(displayFraction);
 
 	}
-	
+
 	public void createSecondTermPanel(Problem prob) throws IOException{
 		setLayout(new GridLayout(1,2));
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
@@ -112,7 +134,7 @@ public class MissionControl extends JPanel{
 		}
 		else
 		{
-			wholeNumber.setText(Integer.toString(prob.getFirst().getWholeNumber()));
+			wholeNumber.setText(Integer.toString(prob.getSecond().getWholeNumber()));
 		}
 		add(wholeNumber);
 		JPanel displayFraction = new JPanel();
@@ -198,11 +220,11 @@ public class MissionControl extends JPanel{
 		addition.add(add);
 		add(addition);
 	}
-	
+
 	public void createSubtractionSign(){
 		{
 			JPanel subtraction = new JPanel();
-			JLabel sub = new JLabel("+");
+			JLabel sub = new JLabel("-");
 			sub.setFont(sub.getFont().deriveFont(60.0f));
 			subtraction.add(sub);
 			add(subtraction);
@@ -221,19 +243,19 @@ public class MissionControl extends JPanel{
 	{
 		//Initialize the used cols array list
 		usedCols = new ArrayList<Integer>();
-		
+
 		//Initialize the array list to be returned
 		ArrayList<SpaceTarget> targets = new ArrayList<SpaceTarget>();
 		Random generator = new Random();
 		Problem correct = new Problem("factor", 1);
-		
+
 		//Generate a random position for the target
 		int x = generator.nextInt(2);
 		int y = generator.nextInt(12);
 		usedCols.add(y);
 		targets.add(new SpaceTarget(x, y, correct.getSolution().getNumerator()));
 		int solution = correct.getSolution().getNumerator();
-		
+
 		//Generate other random incorrect targets
 		for(int i = 0; i < 6; i++)
 		{
@@ -251,7 +273,7 @@ public class MissionControl extends JPanel{
 			targets.add(new SpaceTarget(x, y, wrong));
 			usedCols.add(y);
 		}
-		
+
 		return targets;
 	}
 

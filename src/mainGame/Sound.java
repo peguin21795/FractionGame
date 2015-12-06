@@ -1,4 +1,4 @@
-package mainGame;
+/*package mainGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,3 +99,4 @@ public class Sound extends JPanel{
 	}
 
 }
+*/
