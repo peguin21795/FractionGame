@@ -27,15 +27,22 @@ public class Problem extends JPanel{
 	private ArrayList<Problem> subLevel2 = new ArrayList<Problem>();
 	private ArrayList<Problem> subLevel3 = new ArrayList<Problem>();
 	
+	/* This boolean flag is set to true if the problem involves two parts. */
+	private Boolean twoPartProblem = false;
+	
 	/* A string will be passed into the constructor to determine the type of 
 	 * problem that needs to be generated. An integer will also be passed to set 
 	 * the appropriate level. */
 	
 	public Problem(String operation, int level)
 	{
-//		displayProblem();
 		this.operation = operation;
 		this.level = level;
+		if ((operation == "divide" && level == 3) || (operation == "factor" && (level == 2 || level == 3))
+			|| (operation == "add" && (level == 2 || level == 3)) || (operation == "subtract" && (level == 2 || level == 3)))
+		{
+			this.twoPartProblem = true;
+		}
 		if(operation == "divide")
 			callDivide(level);
 		if(operation == "factor")
@@ -54,6 +61,10 @@ public class Problem extends JPanel{
 		this.solution = solution;
 	}
 	
+	public Boolean getTwoPartProblem()
+	{
+		return twoPartProblem;
+	}
 	
 	public String getOperation()
 	{

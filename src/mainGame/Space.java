@@ -20,9 +20,11 @@ public class Space extends JPanel implements KeyListener
 	private int cellWidth;
 	private int cellHeight;
 	private int currentProblem;
+	private SpaceTarget hitTarget;
 	private MissionControl control;
 	private ArrayList<Problem> problems;
 	private ArrayList<SpaceTarget> targets;
+	private int numOfHits;
 	private boolean playerShot = false;
 	
 	public Space(MissionControl ms, Problem firstProblem)
@@ -39,6 +41,8 @@ public class Space extends JPanel implements KeyListener
 		rows = 10;
 		cols = 12;
 		ship = new Player(9, 5);
+		numOfHits = 0;
+		hitTarget = new SpaceTarget();
 		initCells();
 		addKeyListener(this);
 		Dimension d = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
@@ -101,7 +105,38 @@ public class Space extends JPanel implements KeyListener
 				board[laser.getRow()][laser.getCol()].drawLaser(g, cellWidth, cellHeight);
 				laser.updateLocation();
 			}
-			if(temp.equals(targets.get(0)))
+			if(problems.get(currentProblem).getTwoPartProblem())
+			{
+				if(temp.equals(targets.get(0))  && numOfHits == 0)
+				{
+					System.out.println("HIT2!!");
+					numOfHits++;
+					hitTarget = targets.get(0);
+				}
+				else if(temp.equals(targets.get(1))  && numOfHits == 0)
+				{
+					System.out.println("HIT2!!");
+					numOfHits++;
+					hitTarget = targets.get(1);
+				}
+				else if (temp.equals(targets.get(0)) && numOfHits == 1 && hitTarget.equals(targets.get(1)))
+				{
+					System.out.println("HIT3");
+					currentProblem++;
+					targets = control.generateTargets(problems.get(currentProblem));
+					control.updateDisplay(problems.get(currentProblem));
+					numOfHits = 0;
+				}
+				else if (temp.equals(targets.get(1)) && numOfHits == 1 && hitTarget.equals(targets.get(0)))
+				{
+					System.out.println("Hit4");
+					currentProblem++;
+					targets = control.generateTargets(problems.get(currentProblem));
+					control.updateDisplay(problems.get(currentProblem));
+					numOfHits = 0;
+				}
+			}
+			else if(temp.equals(targets.get(0)))
 			{
 				System.out.println("HIT!!");
 				currentProblem++;
@@ -219,7 +254,6 @@ public class Space extends JPanel implements KeyListener
 				problems.add(temp);
 			}
 		}
-		
 	}
 
 	public void keyPressed(KeyEvent e)

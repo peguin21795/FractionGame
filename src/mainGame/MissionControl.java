@@ -1,4 +1,5 @@
 package mainGame;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -263,7 +264,15 @@ public class MissionControl extends JPanel{
 				wholeNumber.setText("");
 			}
 			else{
-				wholeNumber.setText("?");
+				if (prob.getTwoPartProblem() == true)
+				{
+					System.out.println("Hello");
+					wholeNumber.setText("Find");
+				}
+				else
+				{
+					wholeNumber.setText("?");
+				}
 			}
 			temp.add(wholeNumber);
 			JPanel displayFraction = new JPanel();
@@ -386,7 +395,7 @@ public class MissionControl extends JPanel{
 		this.revalidate();
 	}
 
-	//This function is used by the game logic durring game play.
+	//This function is used by the game logic during game play.
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
 	{	
 		//Initialize the used cols array list
@@ -401,6 +410,7 @@ public class MissionControl extends JPanel{
 		int y = generator.nextInt(12);
 		usedCols.add(y);
 		int solution = -1;
+		int solutionTwo = -1;
 		float solutionFloat = -1;
 		if(p.getOperation().equals("divide") && p.getLevel() == 1){
 			targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
@@ -417,14 +427,41 @@ public class MissionControl extends JPanel{
 			targets.add(new SpaceTarget(x, y, p.getSolution().getDecimal()));
 			solutionFloat = p.getSolution().getDecimal();
 		}
-		else{
+		else if (p.getTwoPartProblem()){
+			targets.add(new SpaceTarget(x, y, p.getSolution().getNumerator()));
+			x = generator.nextInt(2);
+			y = generator.nextInt(12);
+			while(usedCols.contains(y))
+			{
+				y = generator.nextInt(12);
+			}
+			usedCols.add(y);
+			targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
+			solution = p.getSolution().getNumerator();	
+			solutionTwo = p.getSolution().getWholeNumber();
 		}
 
 		//Generate other random incorrect targets
 		for(int i = 0; i < 6; i++){
-			if(solutionFloat == -1){
+			if(solutionFloat == -1 && !p.getTwoPartProblem()){
 				int wrong = generator.nextInt(20);
 				while(wrong == solution)
+				{
+					wrong = generator.nextInt(20);
+				}
+				x = generator.nextInt(4);
+				y = generator.nextInt(12);
+				while(usedCols.contains(y))
+				{
+					y = generator.nextInt(12);
+				}
+				targets.add(new SpaceTarget(x, y, wrong));
+				usedCols.add(y);
+			}
+			else if (p.getTwoPartProblem())
+			{
+				int wrong = generator.nextInt(20);
+				while(wrong == solution || wrong == solutionTwo)
 				{
 					wrong = generator.nextInt(20);
 				}
