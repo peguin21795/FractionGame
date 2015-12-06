@@ -32,6 +32,7 @@ public class GameFrame extends JFrame{
 		add(space, BorderLayout.CENTER);
 		add(sp, BorderLayout.EAST);
 		addKeyListener(space);
+		space.setFocusable(true);
 		//Sound soundTest = new Sound();
 		//add(soundTest, BorderLayout.NORTH);
 

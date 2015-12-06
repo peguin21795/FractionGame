@@ -18,16 +18,20 @@ public class MissionControl extends JPanel{
 	private boolean showCorrectWholeFlag = false;
 	private boolean showCorrectNumFlag = false;
 	private ArrayList<Integer> usedCols;
+	private JPanel firstPanel, secondPanel, solutionPanel, operatorPanel;
 	public MissionControl()
 	{
 		//	prob = null;
 	}
 	public MissionControl(Problem prob){
+		firstPanel = new JPanel();
+		
 		if (prob.getSecond() == null)
 		{
 			try
 			{
-				createFirstTermPanel(prob);
+				firstPanel = createFirstTermPanel(prob);
+				add(firstPanel);
 				createEqualsSign();
 				createSolutionTermPanel(prob);
 			}
@@ -46,7 +50,8 @@ public class MissionControl extends JPanel{
 			{
 				try
 				{
-					createFirstTermPanel(prob);
+					firstPanel = createFirstTermPanel(prob);
+					add(firstPanel);
 					createSubtractionSign();
 					createSecondTermPanel(prob);
 					createEqualsSign();
@@ -65,7 +70,8 @@ public class MissionControl extends JPanel{
 			{
 				try
 				{
-					createFirstTermPanel(prob);
+					firstPanel =createFirstTermPanel(prob);
+					add(firstPanel);
 					createAdditionSign();
 					createSecondTermPanel(prob);
 					createEqualsSign();
@@ -83,8 +89,9 @@ public class MissionControl extends JPanel{
 		}
 	}
 
-	public void createFirstTermPanel(Problem prob) throws IOException{
-		setLayout(new GridLayout(1,2));
+	public JPanel createFirstTermPanel(Problem prob) throws IOException{
+		JPanel temp = new JPanel();
+		temp.setLayout(new GridLayout(1,2));
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 		wholeNumber = new JLabel();
@@ -98,7 +105,7 @@ public class MissionControl extends JPanel{
 		{
 			wholeNumber.setText(Integer.toString(prob.getFirst().getWholeNumber()));
 		}
-		add(wholeNumber);
+		temp.add(wholeNumber);
 		JPanel displayFraction = new JPanel();
 		displayFraction.setLayout(new GridLayout(3, 1));
 		numerator = new JLabel();
@@ -112,7 +119,9 @@ public class MissionControl extends JPanel{
 		displayFraction.add(numerator);
 		displayFraction.add(fracLine);
 		displayFraction.add(denominator);
-		add(displayFraction);
+		temp.add(displayFraction);
+		return temp;
+		
 
 	}
 
