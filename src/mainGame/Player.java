@@ -4,6 +4,7 @@ public class Player implements Movable{
 	private int col;
 	private int distanceToTarget;
 	private Laser laser;
+	private Space space;
 	
 	public Player()
 	{
@@ -50,15 +51,7 @@ public class Player implements Movable{
 	//Updates the gui when a shot is fired by the player
 	public void shoot(SpaceTarget target)
 	{
-		laser = new Laser(this);
-		System.out.println(laser.getCol() + ", " + laser.getRow());
-		this.getDistanceToTarget(target);
-		//loop until shot has hit target, using distance to target as a bound
-		for(int i = 0; i < distanceToTarget; i++)
-		{
-			laser.updateLocation();
-			System.out.println(laser.getCol() + ", " + laser.getRow());
-		}
+		space.setPlayerShot(true);
 	}
 	
 	public int getRow()
@@ -86,7 +79,7 @@ public class Player implements Movable{
 		}
 		else
 		{
-			distanceToTarget = this.row - 1;
+			distanceToTarget = this.row;
 		}
 		return distanceToTarget;
 	}

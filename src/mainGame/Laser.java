@@ -4,6 +4,7 @@ public class Laser
 {
 	private int row; 
 	private int col;
+	private Space space;
 	
 	public Laser()
 	{
@@ -11,15 +12,16 @@ public class Laser
 		col = 0;
 	}
 	
-	public Laser(Player p)
+	public Laser(Player p, Space s)
 	{
 		row = p.getRow() - 1;
 		col = p.getCol();
+		space = s;
 	}
 	
 	public void updateLocation()
 	{
-		row--;
+		row--;	
 	}
 
 	public int getRow() {

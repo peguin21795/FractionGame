@@ -55,10 +55,15 @@ public class SpaceCell
 		g.drawString(output, x + 5, y + 30);
 	}
 	
-	public void drawLaser()
+	public void drawLaser(Graphics g, int cellWidth, int cellHeight)
 	{
 		// draw as a line to the target
 		// draw in individual cells if time allows to make it look like it moves
+		int x = cellWidth * this.col;
+		int y = cellHeight * this.row;
+		g.setColor(Color.RED);
+		g.fillRect(x + cellWidth / 2 - 3, y, cellWidth/4, cellHeight);
+		
 	}
 	
 	public Term getTarget() {
