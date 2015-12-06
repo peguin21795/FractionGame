@@ -6,12 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import mainGame.Player;
+import mainGame.Space;
 import mainGame.Laser;
 import mainGame.SpaceTarget;
 
 public class ShootingTests {
 
 	private SpaceTarget target;
+	private Space space;
 	private Player player;
 	private Laser laser;
 	
@@ -61,7 +63,7 @@ public class ShootingTests {
 		//Test that the laser appears in the correct spot
 		player.setCol(5);
 		player.setRow(10);
-		laser = new Laser(player);
+		laser = new Laser(player, space);
 		assertEquals(9, laser.getRow());
 		assertEquals(5, laser.getCol());
 		
