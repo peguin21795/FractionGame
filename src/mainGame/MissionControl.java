@@ -18,18 +18,27 @@ public class MissionControl extends JPanel{
 	private boolean showCorrectWholeFlag = false;
 	private boolean showCorrectNumFlag = false;
 	private ArrayList<Integer> usedCols;
+	private JPanel firstPanel, secondPanel, solutionPanel, operatorPanel, equalsPanel;
 	public MissionControl()
 	{
 		//	prob = null;
 	}
 	public MissionControl(Problem prob){
+		firstPanel = new JPanel();
+		secondPanel = new JPanel();
+		solutionPanel = new JPanel();
+		operatorPanel = new JPanel();
+		
 		if (prob.getSecond() == null)
 		{
 			try
 			{
-				createFirstTermPanel(prob);
-				createEqualsSign();
-				createSolutionTermPanel(prob);
+				firstPanel = createFirstTermPanel(prob);
+				add(firstPanel);
+				operatorPanel = createEqualsSign();
+				add(operatorPanel);
+				solutionPanel = createSolutionTermPanel(prob);
+				add(solutionPanel);
 			}
 			catch (IOException ex)
 			{
@@ -46,11 +55,15 @@ public class MissionControl extends JPanel{
 			{
 				try
 				{
-					createFirstTermPanel(prob);
-					createSubtractionSign();
-					createSecondTermPanel(prob);
-					createEqualsSign();
-					createSolutionTermPanel(prob);
+					firstPanel = createFirstTermPanel(prob);
+					add(firstPanel);
+					operatorPanel = createSubtractionSign();
+					add(operatorPanel);
+					secondPanel = createSecondTermPanel(prob);
+					add(secondPanel);
+					equalsPanel = createEqualsSign();
+					solutionPanel = createSolutionTermPanel(prob);
+					add(solutionPanel);
 				}
 				catch (IOException ex)
 				{
@@ -65,11 +78,16 @@ public class MissionControl extends JPanel{
 			{
 				try
 				{
-					createFirstTermPanel(prob);
-					createAdditionSign();
-					createSecondTermPanel(prob);
-					createEqualsSign();
-					createSolutionTermPanel(prob);
+					firstPanel =createFirstTermPanel(prob);
+					add(firstPanel);
+					operatorPanel = createAdditionSign();
+					add(operatorPanel);
+					secondPanel = createSecondTermPanel(prob);
+					add(secondPanel);
+					equalsPanel = createEqualsSign();
+					add(equalsPanel);
+					solutionPanel = createSolutionTermPanel(prob);
+					add(solutionPanel);
 				}
 				catch (IOException ex)
 				{
@@ -83,8 +101,9 @@ public class MissionControl extends JPanel{
 		}
 	}
 
-	public void createFirstTermPanel(Problem prob) throws IOException{
-		setLayout(new GridLayout(1,2));
+	public JPanel createFirstTermPanel(Problem prob) throws IOException{
+		JPanel temp = new JPanel();
+		temp.setLayout(new GridLayout(1,2));
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 		wholeNumber = new JLabel();
@@ -98,7 +117,7 @@ public class MissionControl extends JPanel{
 		{
 			wholeNumber.setText(Integer.toString(prob.getFirst().getWholeNumber()));
 		}
-		add(wholeNumber);
+		temp.add(wholeNumber);
 		JPanel displayFraction = new JPanel();
 		displayFraction.setLayout(new GridLayout(3, 1));
 		numerator = new JLabel();
@@ -112,12 +131,15 @@ public class MissionControl extends JPanel{
 		displayFraction.add(numerator);
 		displayFraction.add(fracLine);
 		displayFraction.add(denominator);
-		add(displayFraction);
+		temp.add(displayFraction);
+		return temp;
+		
 
 	}
 
-	public void createSecondTermPanel(Problem prob) throws IOException{
-		setLayout(new GridLayout(1,2));
+	public JPanel createSecondTermPanel(Problem prob) throws IOException{
+		JPanel temp = new JPanel();
+		temp.setLayout(new GridLayout(1,2));
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 		wholeNumber = new JLabel();
@@ -131,7 +153,7 @@ public class MissionControl extends JPanel{
 		{
 			wholeNumber.setText(Integer.toString(prob.getSecond().getWholeNumber()));
 		}
-		add(wholeNumber);
+		temp.add(wholeNumber);
 		JPanel displayFraction = new JPanel();
 		displayFraction.setLayout(new GridLayout(3, 1));
 		numerator = new JLabel();
@@ -145,21 +167,24 @@ public class MissionControl extends JPanel{
 		displayFraction.add(numerator);
 		displayFraction.add(fracLine);
 		displayFraction.add(denominator);
-		add(displayFraction);
+		temp.add(displayFraction);
+		return temp;
 	}
 
-	public void createEqualsSign(){
+	public JPanel createEqualsSign(){
 		JPanel equals = new JPanel();
 		JLabel equ = new JLabel("=");
 		equ.setFont(equ.getFont().deriveFont(72.0f));
 		equals.add(equ);
 		add(equals);
+		return equals;
 	}
 
-	public void createSolutionTermPanel(Problem prob) throws IOException{
+	public JPanel createSolutionTermPanel(Problem prob) throws IOException{
+		JPanel temp = new JPanel();
 		if (showCorrectWholeFlag == true && showCorrectNumFlag == true)
 		{
-			setLayout(new GridLayout(1,2));
+			temp.setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 			wholeNumber = new JLabel();
@@ -173,7 +198,7 @@ public class MissionControl extends JPanel{
 			{
 				wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
 			}
-			add(wholeNumber);
+			temp.add(wholeNumber);
 			JPanel displayFraction = new JPanel();
 			displayFraction.setLayout(new GridLayout(3, 1));
 			numerator = new JLabel();
@@ -191,11 +216,11 @@ public class MissionControl extends JPanel{
 				displayFraction.add(denominator);
 			}
 
-			add(displayFraction);
+			temp.add(displayFraction);
 		}
 		else if (showCorrectWholeFlag == true)
 		{
-			setLayout(new GridLayout(1,2));
+			temp.setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 			wholeNumber = new JLabel();
@@ -209,7 +234,7 @@ public class MissionControl extends JPanel{
 			{
 				wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
 			}
-			add(wholeNumber);
+			temp.add(wholeNumber);
 			JPanel displayFraction = new JPanel();
 			displayFraction.setLayout(new GridLayout(3, 1));
 			numerator = new JLabel();
@@ -227,11 +252,11 @@ public class MissionControl extends JPanel{
 				displayFraction.add(denominator);
 			}
 
-			add(displayFraction);
+			temp.add(displayFraction);
 		}
 		else
 		{
-			setLayout(new GridLayout(1,2));
+			temp.setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 			wholeNumber = new JLabel();
@@ -245,7 +270,7 @@ public class MissionControl extends JPanel{
 			{
 				wholeNumber.setText("?");
 			}
-			add(wholeNumber);
+			temp.add(wholeNumber);
 			JPanel displayFraction = new JPanel();
 			displayFraction.setLayout(new GridLayout(3, 1));
 			numerator = new JLabel();
@@ -263,36 +288,39 @@ public class MissionControl extends JPanel{
 				displayFraction.add(denominator);
 			}
 
-			add(displayFraction);
+			temp.add(displayFraction);
 		}
-		//createQuestionMark();
+		return temp;
 	}
 
 
-	public void createQuestionMark(){
+	public JPanel createQuestionMark(){
 		JPanel question = new JPanel();
 		JLabel quest = new JLabel("?");
 		quest.setFont(quest.getFont().deriveFont(60.0f));
 		question.add(quest);
 		add(question);
+		return question;
 	}
 
-	public void createAdditionSign()
+	public JPanel createAdditionSign()
 	{
 		JPanel addition = new JPanel();
 		JLabel add = new JLabel("  +");
 		add.setFont(add.getFont().deriveFont(60.0f));
 		addition.add(add);
 		add(addition);
+		return addition;
 	}
 
-	public void createSubtractionSign(){
+	public JPanel createSubtractionSign(){
 		{
 			JPanel subtraction = new JPanel();
 			JLabel sub = new JLabel("  -");
 			sub.setFont(sub.getFont().deriveFont(60.0f));
 			subtraction.add(sub);
 			add(subtraction);
+			return subtraction;
 		}
 	}
 
@@ -302,7 +330,18 @@ public class MissionControl extends JPanel{
 
 	public void updateDisplay(Problem p)
 	{
-		
+		try {
+			this.removeAll();
+			this.repaint();
+			firstPanel = createFirstTermPanel(p);
+			this.add(firstPanel);
+			this.revalidate();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	//	this.repaint();
+
 	}
 
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
