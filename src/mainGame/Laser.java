@@ -21,7 +21,7 @@ public class Laser
 	
 	public void updateLocation()
 	{
-		row--;	
+		row--;
 	}
 
 	public int getRow() {

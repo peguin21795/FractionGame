@@ -1,12 +1,11 @@
 package mainGame;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 public class Space extends JPanel implements KeyListener
@@ -20,14 +19,23 @@ public class Space extends JPanel implements KeyListener
 	private final static int BOARD_HEIGHT = 500;
 	private int cellWidth;
 	private int cellHeight;
+	private int currentProblem;
 	private MissionControl control;
+	private ArrayList<Problem> problems;
 	private ArrayList<SpaceTarget> targets;
 	private boolean playerShot = false;
 	
-	public Space(MissionControl ms)
+	public Space(MissionControl ms, Problem firstProblem)
 	{
+		problems = new ArrayList<Problem>();
+		currentProblem = 0;
 		control = ms;
-		targets = control.generateTargets();
+		//Add the first problem to the problem set
+		problems.add(firstProblem);
+		//Generate the rest of the problem set
+		generateProblems();
+		targets = control.generateTargets(problems.get(currentProblem));
+		System.out.println(targets.get(0));
 		rows = 10;
 		cols = 12;
 		ship = new Player(9, 5);
@@ -38,6 +46,8 @@ public class Space extends JPanel implements KeyListener
 		setVisible(true);
 	}
 	
+	
+
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -55,8 +65,6 @@ public class Space extends JPanel implements KeyListener
 				b.draw(g, cellWidth, cellHeight);
 			}
 		}
-		//setBackground(Color.ORANGE);
-		//g.drawRect(100, 100, 100, 100);
 		
 		//Draw the player
 		board[ship.getRow()][ship.getCol()].drawPlayer(g, cellWidth, cellHeight);
@@ -85,6 +93,13 @@ public class Space extends JPanel implements KeyListener
 			{
 				board[laser.getRow()][laser.getCol()].drawLaser(g, cellWidth, cellHeight);
 				laser.updateLocation();
+			}
+			if(temp.equals(targets.get(0)))
+			{
+				System.out.println("HIT!!");
+				currentProblem++;
+				targets = control.generateTargets(problems.get(currentProblem));
+				control.updateDisplay(problems.get(currentProblem));
 			}
 		}		
 		
@@ -117,6 +132,87 @@ public class Space extends JPanel implements KeyListener
 
 	public void setPlayerShot(boolean playerShot) {
 		this.playerShot = playerShot;
+	}
+	
+	//Randomly generate the game problem set
+	public void generateProblems() 
+	{	
+		for(int i = 1; i < 60; i++)
+		{
+			//Problems 1-5 are division level 1
+			if(i < 5)
+			{
+				Problem temp = new Problem("divide", 1);
+				problems.add(temp);
+			}
+			//Problems 6-10 are factoring level 1
+			else if(i < 10)
+			{
+				Problem temp = new Problem("factor", 1);
+				problems.add(temp);
+			}
+			//Problems 11-15 are addition level 1
+			else if(i < 15)
+			{
+				Problem temp = new Problem("add", 1);
+				problems.add(temp);
+			}
+			//Problems 16-20 are subtraction level 1
+			else if(i < 20)
+			{
+				Problem temp = new Problem("subtract", 1);
+				problems.add(temp);
+			}
+			//Problems 20-25 are division level 2
+			else if(i < 25)
+			{
+				Problem temp = new Problem("divide", 2);
+				problems.add(temp);
+			}
+			//Problems 26-30 are factoring level 2
+			else if(i < 30)
+			{
+				Problem temp = new Problem("factor", 2);
+				problems.add(temp);
+			}
+			//Problems 31-35 are addition level 2
+			else if(i < 35)
+			{
+				Problem temp = new Problem("add", 2);
+				problems.add(temp);
+			}
+			//Problems 36-40 are subtraction level 2
+			else if(i < 40)
+			{
+				Problem temp = new Problem("subtract", 2);
+				problems.add(temp);
+			}
+			//Problems 41-45 are division level 3
+			else if(i < 45)
+			{
+				Problem temp = new Problem("divide", 3);
+				problems.add(temp);
+			}
+			//Problems 46-50 are factoring level 3
+			else if(i < 50)
+			{
+				Problem temp = new Problem("factor", 3);
+				problems.add(temp);
+			}
+			//Problems 51-55 are addition level 3
+			else if(i < 55)
+			{
+				Problem temp = new Problem("add", 3);
+				problems.add(temp);
+			}
+			//Problems 56-60 are subtraction level 3
+			else if(i < 60)
+			{
+				Problem temp = new Problem("subtract", 3);
+				problems.add(temp);
+			}
+		}
+		
 	}
 
 	public void keyPressed(KeyEvent e)
@@ -155,8 +251,12 @@ public class Space extends JPanel implements KeyListener
 	public int getRows() {
 		return rows;
 	}
-	
-	
+
+
+
+	public ArrayList<Problem> getProblems() {
+		return problems;
+	}
 	
 	
 	
