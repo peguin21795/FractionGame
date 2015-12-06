@@ -300,8 +300,10 @@ public class MissionControl extends JPanel{
 
 	}
 
-	public void updateDisplay(){
-
+	public void updateDisplay(Problem p)
+	{
+		this.repaint();
+		setVisible(true);
 	}
 
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
@@ -317,8 +319,8 @@ public class MissionControl extends JPanel{
 		int x = generator.nextInt(2);
 		int y = generator.nextInt(12);
 		usedCols.add(y);
-		targets.add(new SpaceTarget(x, y, p.getSolution().getNumerator()));
-		int solution = p.getSolution().getNumerator();
+		targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
+		int solution = p.getSolution().getWholeNumber();
 
 		//Generate other random incorrect targets
 		for(int i = 0; i < 6; i++)

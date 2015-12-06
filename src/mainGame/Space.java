@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -24,12 +25,17 @@ public class Space extends JPanel implements KeyListener
 	private ArrayList<SpaceTarget> targets;
 	private boolean playerShot = false;
 	
-	public Space(MissionControl ms)
+	public Space(MissionControl ms, Problem firstProblem)
 	{
+		problems = new ArrayList<Problem>();
 		currentProblem = 0;
 		control = ms;
+		//Add the first problem to the problem set
+		problems.add(firstProblem);
+		//Generate the rest of the problem set
 		generateProblems();
 		targets = control.generateTargets(problems.get(currentProblem));
+		System.out.println(targets.get(0));
 		rows = 10;
 		cols = 12;
 		ship = new Player(9, 5);
@@ -59,8 +65,6 @@ public class Space extends JPanel implements KeyListener
 				b.draw(g, cellWidth, cellHeight);
 			}
 		}
-		//setBackground(Color.ORANGE);
-		//g.drawRect(100, 100, 100, 100);
 		
 		//Draw the player
 		board[ship.getRow()][ship.getCol()].drawPlayer(g, cellWidth, cellHeight);
@@ -95,6 +99,7 @@ public class Space extends JPanel implements KeyListener
 				System.out.println("HIT!!");
 				currentProblem++;
 				targets = control.generateTargets(problems.get(currentProblem));
+				control.updateDisplay(problems.get(currentProblem));
 			}
 		}		
 		
@@ -131,10 +136,8 @@ public class Space extends JPanel implements KeyListener
 	
 	//Randomly generate the game problem set
 	public void generateProblems() 
-	{
-		problems = new ArrayList<Problem>();
-		
-		for(int i = 0; i < 60; i++)
+	{	
+		for(int i = 1; i < 60; i++)
 		{
 			//Problems 1-5 are division level 1
 			if(i < 5)

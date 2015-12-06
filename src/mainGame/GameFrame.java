@@ -23,15 +23,17 @@ public class GameFrame extends JFrame{
 		setTitle("Battle of the Fractions!");
 		setSize(WIDTH, LENGTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//We will need to add Space.java into the center of the JFrame.
-		Problem problem = new Problem("subtract", 2);
+		//Generate the first problem
+		Problem problem = new Problem("divide", 1);
+		//Add components to frame
 		MissionControl ms = new MissionControl(problem);
 		StatusPanel sp = new StatusPanel();
-		Space space = new Space(ms);
+		Space space = new Space(ms, problem);
 		add(ms, BorderLayout.SOUTH);
 		add(space, BorderLayout.CENTER);
 		add(sp, BorderLayout.EAST);
 		addKeyListener(space);
+		space.setFocusable(true);
 		//Sound soundTest = new Sound();
 		//add(soundTest, BorderLayout.NORTH);
 
