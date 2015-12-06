@@ -239,7 +239,7 @@ public class MissionControl extends JPanel{
 
 	}
 
-	public ArrayList<SpaceTarget> generateTargets()
+	public ArrayList<SpaceTarget> generateTargets(Problem p)
 	{
 		//Initialize the used cols array list
 		usedCols = new ArrayList<Integer>();
@@ -247,14 +247,13 @@ public class MissionControl extends JPanel{
 		//Initialize the array list to be returned
 		ArrayList<SpaceTarget> targets = new ArrayList<SpaceTarget>();
 		Random generator = new Random();
-		Problem correct = new Problem("factor", 1);
 
 		//Generate a random position for the target
 		int x = generator.nextInt(2);
 		int y = generator.nextInt(12);
 		usedCols.add(y);
-		targets.add(new SpaceTarget(x, y, correct.getSolution().getNumerator()));
-		int solution = correct.getSolution().getNumerator();
+		targets.add(new SpaceTarget(x, y, p.getSolution().getNumerator()));
+		int solution = p.getSolution().getNumerator();
 
 		//Generate other random incorrect targets
 		for(int i = 0; i < 6; i++)
