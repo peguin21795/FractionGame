@@ -26,9 +26,11 @@ public class Space extends JPanel implements KeyListener
 	private ArrayList<SpaceTarget> targets;
 	private int numOfHits;
 	private boolean playerShot = false;
+	private StatusPanel status;
 	
-	public Space(MissionControl ms, Problem firstProblem)
+	public Space(MissionControl ms, Problem firstProblem, StatusPanel s)
 	{
+		status = s;
 		problems = new ArrayList<Problem>();
 		currentProblem = 0;
 		control = ms;
@@ -122,6 +124,7 @@ public class Space extends JPanel implements KeyListener
 				else if (temp.equals(targets.get(0)) && numOfHits == 1 && hitTarget.equals(targets.get(1)))
 				{
 					System.out.println("HIT3");
+					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
@@ -130,6 +133,7 @@ public class Space extends JPanel implements KeyListener
 				else if (temp.equals(targets.get(1)) && numOfHits == 1 && hitTarget.equals(targets.get(0)))
 				{
 					System.out.println("Hit4");
+					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
@@ -139,6 +143,7 @@ public class Space extends JPanel implements KeyListener
 			else if(temp.equals(targets.get(0)))
 			{
 				System.out.println("HIT!!");
+				status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 				currentProblem++;
 				targets = control.generateTargets(problems.get(currentProblem));
 				control.updateDisplay(problems.get(currentProblem));
@@ -184,75 +189,80 @@ public class Space extends JPanel implements KeyListener
 			//Problems 1-5 are division level 1
 			if(i < 5)
 			{
-				Problem temp = new Problem("divide", 1);
+				Problem temp = new Problem("divide", 1, 0);
 				problems.add(temp);
 			}
 			//Problems 6-10 are factoring level 1
 			else if(i < 10)
 			{
-				Problem temp = new Problem("factor", 1);
+				Problem temp = new Problem("factor", 1, 1);
 				problems.add(temp);
 			}
 			//Problems 11-15 are addition level 1
 			else if(i < 15)
 			{
-				Problem temp = new Problem("add", 1);
+				Problem temp = new Problem("add", 1, 2);
 				problems.add(temp);
 			}
 			//Problems 16-20 are subtraction level 1
 			else if(i < 20)
 			{
-				Problem temp = new Problem("subtract", 1);
+				Problem temp = new Problem("subtract", 1, 3);
 				problems.add(temp);
 			}
 			//Problems 20-25 are division level 2
 			else if(i < 25)
 			{
-				Problem temp = new Problem("divide", 2);
+				Problem temp = new Problem("divide", 2, 4);
 				problems.add(temp);
 			}
 			//Problems 26-30 are factoring level 2
 			else if(i < 30)
 			{
-				Problem temp = new Problem("factor", 2);
+				Problem temp = new Problem("factor", 2, 5);
 				problems.add(temp);
 			}
 			//Problems 31-35 are addition level 2
 			else if(i < 35)
 			{
-				Problem temp = new Problem("add", 2);
+				Problem temp = new Problem("add", 2, 6);
 				problems.add(temp);
 			}
 			//Problems 36-40 are subtraction level 2
 			else if(i < 40)
 			{
-				Problem temp = new Problem("subtract", 2);
+				Problem temp = new Problem("subtract", 2, 7);
 				problems.add(temp);
 			}
 			//Problems 41-45 are division level 3
 			else if(i < 45)
 			{
-				Problem temp = new Problem("divide", 3);
+				Problem temp = new Problem("divide", 3, 8);
 				problems.add(temp);
 			}
 			//Problems 46-50 are factoring level 3
 			else if(i < 50)
 			{
-				Problem temp = new Problem("factor", 3);
+				Problem temp = new Problem("factor", 3, 9);
 				problems.add(temp);
 			}
 			//Problems 51-55 are addition level 3
 			else if(i < 55)
 			{
-				Problem temp = new Problem("add", 3);
+				Problem temp = new Problem("add", 3, 10);
 				problems.add(temp);
 			}
 			//Problems 56-60 are subtraction level 3
 			else if(i < 60)
 			{
-				Problem temp = new Problem("subtract", 3);
+				Problem temp = new Problem("subtract", 3, 11);
 				problems.add(temp);
 			}
+		}
+		
+		for (Problem p: problems)
+		{
+			System.out.println(p);
 		}
 	}
 

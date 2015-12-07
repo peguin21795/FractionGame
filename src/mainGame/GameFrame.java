@@ -24,11 +24,11 @@ public class GameFrame extends JFrame{
 		setSize(WIDTH, LENGTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Generate the first problem
-		Problem problem = new Problem("divide", 1);
+		Problem problem = new Problem("divide", 1, 0);
 		//Add components to frame
 		MissionControl ms = new MissionControl(problem);
 		StatusPanel sp = new StatusPanel();
-		Space space = new Space(ms, problem);
+		Space space = new Space(ms, problem, sp);
 		add(ms, BorderLayout.SOUTH);
 		add(space, BorderLayout.CENTER);
 		add(sp, BorderLayout.EAST);

@@ -11,18 +11,21 @@ import mainGame.MissionControl;
 import mainGame.Player;
 import mainGame.Problem;
 import mainGame.Space;
+import mainGame.StatusPanel;
 
 public class MovementTest {
 	private Player p;
 	private Space s;
 	private MissionControl mc = new MissionControl();
-	private Problem problem = new Problem("divide", 1);
+	private Problem problem = new Problem("divide", 1, 1);
+	private StatusPanel status;
 	
 	@Before
 	public void init() throws IOException
 	{
+		status = new StatusPanel();
 		p = new Player();
-		s = new Space(mc, problem);
+		s = new Space(mc, problem, status);
 	}
 	
 	@Test	

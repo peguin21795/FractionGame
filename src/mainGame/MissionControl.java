@@ -22,7 +22,7 @@ public class MissionControl extends JPanel{
 	private JPanel firstPanel, secondPanel, solutionPanel, operatorPanel, equalsPanel;
 	public MissionControl()
 	{
-		//	prob = null;
+		//	prob = ;
 	}
 	public MissionControl(Problem prob){
 		firstPanel = new JPanel();
@@ -30,7 +30,7 @@ public class MissionControl extends JPanel{
 		solutionPanel = new JPanel();
 		operatorPanel = new JPanel();
 		
-		if (prob.getSecond() == null)
+		if (prob.getSecond().getDenominator() == 0)
 		{
 			try
 			{
@@ -335,7 +335,7 @@ public class MissionControl extends JPanel{
 	{
 		this.removeAll();
 		this.repaint();
-		if (p.getSecond() == null){
+		if (p.getSecond().getDenominator() == 0){
 			try{
 				firstPanel = createFirstTermPanel(p);
 				add(firstPanel);

@@ -26,6 +26,7 @@ public class Problem extends JPanel{
 	private ArrayList<Problem> subLevel1 = new ArrayList<Problem>();
 	private ArrayList<Problem> subLevel2 = new ArrayList<Problem>();
 	private ArrayList<Problem> subLevel3 = new ArrayList<Problem>();
+	private int statusLevel;
 	
 	/* This boolean flag is set to true if the problem involves two parts. */
 	private Boolean twoPartProblem = false;
@@ -34,8 +35,9 @@ public class Problem extends JPanel{
 	 * problem that needs to be generated. An integer will also be passed to set 
 	 * the appropriate level. */
 	
-	public Problem(String operation, int level)
+	public Problem(String operation, int level, int s)
 	{
+		statusLevel = s;
 		this.operation = operation;
 		this.level = level;
 		if ((operation == "divide" && level == 3) || (operation == "factor" && (level == 2 || level == 3))
@@ -53,6 +55,10 @@ public class Problem extends JPanel{
 			callSubtract(level);
 	}
 	
+	public int getStatusLevel() {
+		return statusLevel;
+	}
+
 	//this second constructor is for the subtraction function to use because this method is
 	//not generating problems, it is reading the problems in from a txt file.
 	public Problem(Term one, Term two, Term solution){
@@ -99,7 +105,7 @@ public class Problem extends JPanel{
 			int two = (rn.nextInt(10)+1);
 			int three = one * two;
 			this.first = new Term(three,two);
-			this.second = null;
+			this.second =  new Term(0,0,0,0);;
 			this.solution = new Term(one);
 		}
 		else if (level == 2)
@@ -110,7 +116,7 @@ public class Problem extends JPanel{
 				two = two-1;
 			int one = 1;
 			this.first = new Term(one,two);
-			this.second = null;
+			this.second = new Term(0,0,0,0);
 			float dec = (float)one/two;
 			this.solution = new Term(0, 0, 0, dec);
 		}
@@ -123,7 +129,7 @@ public class Problem extends JPanel{
 			int four = two*three;
 			this.solution = new Term(one, two, three,0);
 			this.first = new Term((four+one), two);
-			this.second = null;
+			this.second = new Term(0,0,0,0);
 		}
 		else{
 			System.err.println("INVALID LEVEL!!");
@@ -147,7 +153,7 @@ public class Problem extends JPanel{
 				two = two-1;
 			int five = two*three;
 			this.first = new Term(four, five);
-			this.second = null;
+			this.second =  new Term(0,0,0,0);;
 			this.solution = new Term(one, two);
 		}
 		else if(level == 2)
@@ -161,7 +167,7 @@ public class Problem extends JPanel{
 				two = two + 7;
 			int three = (rn.nextInt(10)+1);
 			this.first = new Term(((three*two) + one), two);
-			this.second = null;
+			this.second =  new Term(0,0,0,0);;
 			this.solution = new Term(one,two,three,0);
 		}
 		else if(level == 3)
@@ -172,7 +178,7 @@ public class Problem extends JPanel{
 			int three = (rn.nextInt(10)+1);
 			//this.first = new Term((three*one),(three*two));
 			this.first = new Term(((three*two) + one), two);
-			this.second = null;
+			this.second =  new Term(0,0,0,0);;
 			this.solution = new Term(one,two,three,0);
 		}
 		else{
@@ -206,9 +212,10 @@ public class Problem extends JPanel{
 				this.solution = new Term((two+three),one);
 			}
 			else{
-				for(int i=1; i<11;++i){
+				for(int i=1; i<100;++i){
 					if((two+three) > (one*i) && (two+three) < (one*(i+1)))
 					{
+						
 						four = (two + three) - (one*i);
 						this.solution = new Term(four, one, i,0);
 					}
@@ -221,12 +228,12 @@ public class Problem extends JPanel{
 			int one = (rn.nextInt(20)+1);
 			int two = (rn.nextInt(20)+1);
 			int three = (rn.nextInt(10)+1);
-			int four = rn.nextInt(5)+2;
+			int four = rn.nextInt(5)+1;
 			if((two+three)< one){
 				this.solution = new Term((two+three), one);
 			}
 			else{
-				for(int i=0; i<11; ++i){
+				for(int i=0; i<(four*100); ++i){
 					if((two+three)> (one*i) && (two+three) < (one*(i+1)))
 						this.solution = new Term(((two+three)-one), one, 1,0);
 				}
@@ -240,6 +247,13 @@ public class Problem extends JPanel{
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return "Problem [first=" + first + ", second=" + second + ", solution=" + solution + ", operation=" + operation
+				+ ", level=" + level + ", subLevel1=" + subLevel1 + ", subLevel2=" + subLevel2 + ", subLevel3="
+				+ subLevel3 + ", statusLevel=" + statusLevel + ", twoPartProblem=" + twoPartProblem + "]";
+	}
+
 	//this function is called by the constructor to provide a problem set of the subtraction
 	//type.  this function does NOT generate the problems, it will read them in from a text file.
 	private void callSubtract(int level) 
