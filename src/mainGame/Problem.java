@@ -1,17 +1,12 @@
 package mainGame;
 
-import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 //This class generates problems or reads in a problem set from a file. the problems are made
 //up of terms (see Term class) subtraction problems of all levels are read in from a file.
@@ -269,7 +264,6 @@ public class Problem extends JPanel{
 		try {
 			loadSubtractionFile();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(level == 1){
@@ -322,6 +316,7 @@ public class Problem extends JPanel{
 			else{
 				subLevel3.add(temp.get(i));
 			}
+			in.close();
 		}
 	}
 	
