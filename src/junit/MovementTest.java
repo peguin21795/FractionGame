@@ -35,14 +35,14 @@ public class MovementTest {
 		// Also checks that we won't go out of bounds
 		
 		// Move way too far and make sure we stay at last moveable space
-		for(int i = 0; i < 200; i++)
+		for(int i = 0; i < 1000; i++)
 		{
 			p.move('R', s); //assume moving right, not implemented yet
 		}
-		assertEquals(p.getCol(), s.getWidth());
+		assertEquals(p.getCol()+1, s.getCols());
 		
 		// Move way too far other way and make sure we stay at last moveable space on that side
-		for(int i = 0; i < 200; i++)
+		for(int i = 0; i < 1000; i++)
 		{
 			p.move('L', s); //assume moving left, not implemented yet
 		}

@@ -202,18 +202,21 @@ public class Problem extends JPanel{
 		else if(level == 2)//This level is proper fractions with common denominators, BUT improper fractions must be factored.
 		{
 			Random rn = new Random();
-			int one = (rn.nextInt(10)+1);
+			int one = (rn.nextInt(10)+2);
 			int two = (rn.nextInt(10)+1);
 			int three = (rn.nextInt(10)+1);
 			int four = 0;
 			this.first = new Term(two, one);
 			this.second = new Term(three, one);
-			if((two+three)< one){
+			if((two+three)< one)
+			{
 				this.solution = new Term((two+three),one);
 			}
-			else{
-				for(int i=1; i<100;++i){
-					if((two+three) > (one*i) && (two+three) < (one*(i+1)))
+			else
+			{
+				for(int i=1; i<100;++i)
+				{
+					if((two+three) >= (one*i) && (two+three) < (one*(i+1)))
 					{
 						
 						four = (two + three) - (one*i);
@@ -225,17 +228,22 @@ public class Problem extends JPanel{
 		else if(level == 3)
 		{
 			Random rn = new Random();
-			int one = (rn.nextInt(20)+1);
+			int one = (rn.nextInt(20)+2);
 			int two = (rn.nextInt(20)+1);
 			int three = (rn.nextInt(10)+1);
 			int four = rn.nextInt(5)+1;
-			if((two+three)< one){
+			if((two+three)< one)
+			{
 				this.solution = new Term((two+three), one);
 			}
-			else{
-				for(int i=0; i<(four*100); ++i){
-					if((two+three)> (one*i) && (two+three) < (one*(i+1)))
+			else
+			{
+				for(int i=0; i<1000; ++i)
+				{
+					if((two+three) >= (one*i) && (two+three) < (one*(i+1)))
+					{
 						this.solution = new Term(((two+three)-one), one, 1,0);
+					}	
 				}
 			}
 			int five = four*2;

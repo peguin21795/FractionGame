@@ -48,6 +48,7 @@ public class TargetsTest {
 		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
 		
 		sampleProblemAddition = new Problem("add", 2, 1);
+		System.out.println(sampleProblemAddition.getSolution().getNumerator() + " " + sampleProblemAddition.getSolution().getDenominator() + " " + sampleProblemAddition.getSolution().getWholeNumber());
 		int solution_numerator = sampleProblemAddition.getSolution().getNumerator() + sampleProblemAddition.getSolution().getDenominator() * sampleProblemAddition.getSolution().getWholeNumber(); 
 		assertEquals(solution_numerator, sampleProblemAddition.getFirst().getNumerator() + sampleProblemAddition.getSecond().getNumerator());
 		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
@@ -55,6 +56,7 @@ public class TargetsTest {
 		assertEquals(sampleProblemAddition.getSolution().getDenominator(), sampleProblemAddition.getFirst().getDenominator());
 		
 		sampleProblemAddition = new Problem("add", 3, 1);
+		System.out.println(sampleProblemAddition.getSolution().getNumerator() + " " + sampleProblemAddition.getSolution().getDenominator() + " " + sampleProblemAddition.getSolution().getWholeNumber());
 		solution_numerator = sampleProblemAddition.getSolution().getNumerator() + sampleProblemAddition.getSolution().getDenominator() * sampleProblemAddition.getSolution().getWholeNumber(); 
 		float solution = (float)solution_numerator/(float)sampleProblemAddition.getSolution().getDenominator();
 		float term1 = (float)sampleProblemAddition.getFirst().getNumerator()/(float)sampleProblemAddition.getFirst().getDenominator();
@@ -81,7 +83,6 @@ public class TargetsTest {
 		float solution = (float)sampleProblemFactoring.getSolution().getNumerator()/(float)sampleProblemFactoring.getSolution().getDenominator();
 		float first = (float)sampleProblemFactoring.getFirst().getNumerator()/(float)sampleProblemFactoring.getFirst().getDenominator();
 		assertEquals(solution, first, 0.000001);
-		assertEquals(null, sampleProblemFactoring.getSecond());
 		
 		sampleProblemFactoring = new Problem("factor", 2, 1);
 		float solution_numerator = (float)sampleProblemFactoring.getSolution().getWholeNumber()*(float)sampleProblemFactoring.getSolution().getDenominator()+(float)sampleProblemFactoring.getSolution().getNumerator();
@@ -102,18 +103,15 @@ public class TargetsTest {
 		sampleProblemDivision = new Problem("divide", 1, 1);
 		assertEquals(sampleProblemDivision.getFirst().getNumerator()/sampleProblemDivision.getFirst().getDenominator(),
 				sampleProblemDivision.getSolution().getWholeNumber());
-		assertEquals(null, sampleProblemDivision.getSecond());
 		
 		sampleProblemDivision = new Problem("divide", 2, 1);
 		assertEquals((float)sampleProblemDivision.getFirst().getNumerator()/(float)sampleProblemDivision.getFirst().getDenominator(),
 				sampleProblemDivision.getSolution().getDecimal(), 0.000001);
-		assertEquals(null, sampleProblemDivision.getSecond());
 		
 		sampleProblemDivision = new Problem("divide", 3, 1);
 		assertEquals(sampleProblemDivision.getSolution().getDenominator(), sampleProblemDivision.getFirst().getDenominator());
 		assertEquals(sampleProblemDivision.getSolution().getWholeNumber()*sampleProblemDivision.getSolution().getDenominator() + sampleProblemDivision.getSolution().getNumerator(),
 				sampleProblemDivision.getFirst().getNumerator());
-		assertEquals(null, sampleProblemDivision.getSecond());
 	}
 
 }

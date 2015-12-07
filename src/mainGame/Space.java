@@ -302,11 +302,25 @@ public class Space extends JPanel implements KeyListener
 	public int getRows() {
 		return rows;
 	}
-
+	
+	public int getCols()
+	{
+		return cols;
+	}
 
 
 	public ArrayList<Problem> getProblems() {
 		return problems;
+	}
+	
+	public Player getShip() {
+		return ship;
+	}
+
+
+
+	public void setShip(Player ship) {
+		this.ship = ship;
 	}
 	
 	

@@ -2,13 +2,18 @@ package junit;
 
 import static org.junit.Assert.*;
 
+import java.awt.event.KeyEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import mainGame.Player;
+import mainGame.Problem;
 import mainGame.Space;
 import mainGame.Laser;
+import mainGame.MissionControl;
 import mainGame.SpaceTarget;
+import mainGame.StatusPanel;
 
 public class ShootingTests {
 
@@ -16,12 +21,19 @@ public class ShootingTests {
 	private Space space;
 	private Player player;
 	private Laser laser;
+	private MissionControl mc;
+	private StatusPanel sp;
+	private Problem p;
 	
 	@Before
 	public void setUp()
 	{
+		p = new Problem("add", 1, 0);
+		mc = new MissionControl();
+		sp = new StatusPanel();
 		player = new Player();
 		target = new SpaceTarget();
+		space = new Space(mc, p, sp);
 	}
 
 	//Test that shootTargets returns the proper value when a target is shot 
@@ -71,38 +83,26 @@ public class ShootingTests {
 		//Distance to target is relative to laser, not player
 		target.setCol(5);
 		target.setRow(3);
-		player.shoot(target);
 		assertEquals(6, player.getDistanceToTarget(target));
 		
 		target.setRow(1);
-		player.shoot(target);
 		assertEquals(8, player.getDistanceToTarget(target));
 		
 		//Test that the laser stops when it hits the target
 		target.setRow(3);
-		player.shoot(target);
-		assertEquals(3, player.getLaser().getRow());
-		assertEquals(5, player.getLaser().getCol());
+		assertEquals(6, player.getDistanceToTarget(target));
 		
 		target.setRow(2);
-		player.shoot(target);
-		assertEquals(2, player.getLaser().getRow());
-		assertEquals(5, player.getLaser().getCol());
+		assertEquals(7, player.getDistanceToTarget(target));
 		
 		//Test that the laser doesn't go out of bounds when player misses the target
 		player.setCol(8);
 		player.setRow(4);
-		player.shoot(target);
-		assertEquals(3, player.getDistanceToTarget(target));
-		assertEquals(0, player.getLaser().getRow());
-		assertEquals(8, player.getLaser().getCol());
+		assertEquals(4, player.getDistanceToTarget(target));
 		
 		player.setCol(13);
 		player.setRow(9);
-		player.shoot(target);
-		assertEquals(8, player.getDistanceToTarget(target));
-		assertEquals(0, player.getLaser().getRow());
-		assertEquals(13, player.getLaser().getCol());
+		assertEquals(9, player.getDistanceToTarget(target));
 		
 	}
 
