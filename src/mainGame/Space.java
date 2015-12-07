@@ -109,23 +109,32 @@ public class Space extends JPanel implements KeyListener
 				board[laser.getRow()][laser.getCol()].drawLaser(g, cellWidth, cellHeight);
 				laser.updateLocation();
 			}
+			
 			if(problems.get(currentProblem).getTwoPartProblem())
 			{
-				if(temp.equals(targets.get(0))  && numOfHits == 0)
+				if(temp.equals(targets.get(0)) && numOfHits == 0)
 				{
-					System.out.println("HIT2!!");
+					System.out.println("-------------1----------------");
+					control.setShowCorrectNumFlag(true);
+					control.updateDisplay(problems.get(currentProblem));
 					numOfHits++;
 					hitTarget = targets.get(0);
+					//System.out.println("1 " + control.isShowCorrectNumFlag() + " " + control.isShowCorrectWholeFlag());
 				}
-				else if(temp.equals(targets.get(1))  && numOfHits == 0)
+				else if(temp.equals(targets.get(1)) && numOfHits == 0)
 				{
-					System.out.println("HIT2!!");
+					System.out.println("-------------2----------------");
+					control.setShowCorrectWholeFlag(true);
+					control.updateDisplay(problems.get(currentProblem));
 					numOfHits++;
 					hitTarget = targets.get(1);
+					//System.out.println("2 " + control.isShowCorrectNumFlag() + " " + control.isShowCorrectWholeFlag());
 				}
 				else if (temp.equals(targets.get(0)) && numOfHits == 1 && hitTarget.equals(targets.get(1)))
 				{
-					System.out.println("HIT3");
+					System.out.println("-------------3----------------");
+					control.setShowCorrectNumFlag(false);
+					control.setShowCorrectWholeFlag(false);
 					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
 					if(currentProblem == 60){
@@ -135,10 +144,13 @@ public class Space extends JPanel implements KeyListener
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
 					numOfHits = 0;
+					//System.out.println("3 " + control.isShowCorrectNumFlag() + " " + control.isShowCorrectWholeFlag());
 				}
 				else if (temp.equals(targets.get(1)) && numOfHits == 1 && hitTarget.equals(targets.get(0)))
 				{
-					System.out.println("Hit4");
+					System.out.println("-------------4----------------");
+					control.setShowCorrectNumFlag(false);
+					control.setShowCorrectWholeFlag(false);
 					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
 					if(currentProblem == 60){
@@ -148,11 +160,13 @@ public class Space extends JPanel implements KeyListener
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
 					numOfHits = 0;
+					//System.out.println("4 " + control.isShowCorrectNumFlag() + " " + control.isShowCorrectWholeFlag());
 				}
 			}
+			
 			else if(temp.equals(targets.get(0)))
 			{
-				System.out.println("HIT!!");
+				//System.out.println("HIT!!");
 				status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 				currentProblem++;
 				targets = control.generateTargets(problems.get(currentProblem));

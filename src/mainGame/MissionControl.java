@@ -20,6 +20,7 @@ public class MissionControl extends JPanel{
 	private boolean showCorrectNumFlag = false;
 	private ArrayList<Integer> usedCols;
 	private JPanel firstPanel, secondPanel, solutionPanel, operatorPanel, equalsPanel;
+
 	public MissionControl()
 	{
 		//	prob = ;
@@ -29,7 +30,7 @@ public class MissionControl extends JPanel{
 		secondPanel = new JPanel();
 		solutionPanel = new JPanel();
 		operatorPanel = new JPanel();
-		
+
 		if (prob.getSecond().getDenominator() == 0)
 		{
 			try
@@ -100,6 +101,19 @@ public class MissionControl extends JPanel{
 				}
 			}
 		}
+	}
+
+	public boolean isShowCorrectWholeFlag() {
+		return showCorrectWholeFlag;
+	}
+	public void setShowCorrectWholeFlag(boolean showCorrectWholeFlag) {
+		this.showCorrectWholeFlag = showCorrectWholeFlag;
+	}
+	public boolean isShowCorrectNumFlag() {
+		return showCorrectNumFlag;
+	}
+	public void setShowCorrectNumFlag(boolean showCorrectNumFlag) {
+		this.showCorrectNumFlag = showCorrectNumFlag;
 	}
 
 	//This function is called by the constructor to make the first panel that contains the 
@@ -191,69 +205,144 @@ public class MissionControl extends JPanel{
 	//and then the numerator of the fraction portion of the term.
 	public JPanel createSolutionTermPanel(Problem prob) throws IOException{
 		JPanel temp = new JPanel();
-		if (showCorrectWholeFlag == true && showCorrectNumFlag == true){
-			temp.setLayout(new GridLayout(1,2));
-			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
-			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
-			wholeNumber = new JLabel();
-			wholeNumber.setHorizontalAlignment(JTextField.CENTER);
-			wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
-			if (prob.getSolution().getWholeNumber() == 0){
-				wholeNumber.setText("");
+		if (prob.getTwoPartProblem())
+		{
+			if (showCorrectWholeFlag == true && showCorrectNumFlag == true){
+				System.out.println("1");
+				temp.setLayout(new GridLayout(1,2));
+				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+				wholeNumber = new JLabel();
+				wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+				wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+				if (prob.getSolution().getWholeNumber() == 0){
+					wholeNumber.setText("");
+				}
+				else{
+					wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
+				}
+				temp.add(wholeNumber);
+				JPanel displayFraction = new JPanel();
+				displayFraction.setLayout(new GridLayout(3, 1));
+				numerator = new JLabel();
+				numerator.setHorizontalAlignment(JTextField.CENTER);
+				numerator.setFont(numerator.getFont().deriveFont(28.0f));
+				denominator = new JLabel();
+				denominator.setHorizontalAlignment(JTextField.CENTER);
+				denominator.setFont(denominator.getFont().deriveFont(28.0f));
+				if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
+					numerator.setText(Integer.toString(prob.getSolution().getNumerator()));
+					denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+					displayFraction.add(numerator);
+					displayFraction.add(fracLine);
+					displayFraction.add(denominator);
+				}
+				temp.add(displayFraction);
 			}
-			else{
-				wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
+			
+			else if (showCorrectWholeFlag == true && showCorrectNumFlag == false){
+				System.out.println("2");
+				temp.setLayout(new GridLayout(1,2));
+				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+				wholeNumber = new JLabel();
+				wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+				wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+				if (prob.getSolution().getWholeNumber() == 0){
+					wholeNumber.setText("");
+				}
+				else{
+					wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
+				}
+				temp.add(wholeNumber);
+				JPanel displayFraction = new JPanel();
+				displayFraction.setLayout(new GridLayout(3, 1));
+				numerator = new JLabel();
+				numerator.setHorizontalAlignment(JTextField.CENTER);
+				numerator.setFont(numerator.getFont().deriveFont(28.0f));
+				denominator = new JLabel();
+				denominator.setHorizontalAlignment(JTextField.CENTER);
+				denominator.setFont(denominator.getFont().deriveFont(28.0f));
+				if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
+					numerator.setText("?");
+					denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+					displayFraction.add(numerator);
+					displayFraction.add(fracLine);
+					displayFraction.add(denominator);
+				}
+				temp.add(displayFraction);
 			}
-			temp.add(wholeNumber);
-			JPanel displayFraction = new JPanel();
-			displayFraction.setLayout(new GridLayout(3, 1));
-			numerator = new JLabel();
-			numerator.setHorizontalAlignment(JTextField.CENTER);
-			numerator.setFont(numerator.getFont().deriveFont(28.0f));
-			denominator = new JLabel();
-			denominator.setHorizontalAlignment(JTextField.CENTER);
-			denominator.setFont(denominator.getFont().deriveFont(28.0f));
-			if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
-				numerator.setText(Integer.toString(prob.getSolution().getNumerator()));
-				denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
-				displayFraction.add(numerator);
-				displayFraction.add(fracLine);
-				displayFraction.add(denominator);
+			
+			else if (showCorrectWholeFlag == false && showCorrectNumFlag == true){
+				System.out.println("3");
+				temp.setLayout(new GridLayout(1,2));
+				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+				wholeNumber = new JLabel();
+				wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+				wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+				if (prob.getSolution().getWholeNumber() == 0){
+					wholeNumber.setText("");
+				}
+				else{
+					wholeNumber.setText("?");
+				}
+				temp.add(wholeNumber);
+				JPanel displayFraction = new JPanel();
+				displayFraction.setLayout(new GridLayout(3, 1));
+				numerator = new JLabel();
+				numerator.setHorizontalAlignment(JTextField.CENTER);
+				numerator.setFont(numerator.getFont().deriveFont(28.0f));
+				denominator = new JLabel();
+				denominator.setHorizontalAlignment(JTextField.CENTER);
+				denominator.setFont(denominator.getFont().deriveFont(28.0f));
+				if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
+					numerator.setText(Integer.toString(prob.getSolution().getNumerator()));
+					denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+					displayFraction.add(numerator);
+					displayFraction.add(fracLine);
+					displayFraction.add(denominator);
+				}
+				temp.add(displayFraction);
+			} 
+			
+			else
+			{
+				System.out.println("4");
+				temp.setLayout(new GridLayout(1,2));
+				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
+				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
+				wholeNumber = new JLabel();
+				wholeNumber.setHorizontalAlignment(JTextField.CENTER);
+				wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
+				if (prob.getSolution().getWholeNumber() == 0){
+					wholeNumber.setText("");
+				}
+				else{
+					wholeNumber.setText("?");
+				}
+				temp.add(wholeNumber);
+				JPanel displayFraction = new JPanel();
+				displayFraction.setLayout(new GridLayout(3, 1));
+				numerator = new JLabel();
+				numerator.setHorizontalAlignment(JTextField.CENTER);
+				numerator.setFont(numerator.getFont().deriveFont(28.0f));
+				denominator = new JLabel();
+				denominator.setHorizontalAlignment(JTextField.CENTER);
+				denominator.setFont(denominator.getFont().deriveFont(28.0f));
+				if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
+					numerator.setText("?");
+					denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
+					displayFraction.add(numerator);
+					displayFraction.add(fracLine);
+					displayFraction.add(denominator);
+				}
+				temp.add(displayFraction);
 			}
-			temp.add(displayFraction);
 		}
-		else if (showCorrectWholeFlag == true){
-			temp.setLayout(new GridLayout(1,2));
-			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
-			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
-			wholeNumber = new JLabel();
-			wholeNumber.setHorizontalAlignment(JTextField.CENTER);
-			wholeNumber.setFont(wholeNumber.getFont().deriveFont(60.0f));
-			if (prob.getSolution().getWholeNumber() == 0){
-				wholeNumber.setText("");
-			}
-			else{
-				wholeNumber.setText(Integer.toString(prob.getSolution().getWholeNumber()));
-			}
-			temp.add(wholeNumber);
-			JPanel displayFraction = new JPanel();
-			displayFraction.setLayout(new GridLayout(3, 1));
-			numerator = new JLabel();
-			numerator.setHorizontalAlignment(JTextField.CENTER);
-			numerator.setFont(numerator.getFont().deriveFont(28.0f));
-			denominator = new JLabel();
-			denominator.setHorizontalAlignment(JTextField.CENTER);
-			denominator.setFont(denominator.getFont().deriveFont(28.0f));
-			if (prob.getSolution().getNumerator() != 0 && prob.getSolution().getDenominator() != 0){
-				numerator.setText("?");
-				denominator.setText(Integer.toString(prob.getSolution().getDenominator()));
-				displayFraction.add(numerator);
-				displayFraction.add(fracLine);
-				displayFraction.add(denominator);
-			}
-			temp.add(displayFraction);
-		}
-		else{
+		else
+		{
+			System.out.println("Bye");
 			temp.setLayout(new GridLayout(1,2));
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
@@ -266,7 +355,6 @@ public class MissionControl extends JPanel{
 			else{
 				if (prob.getTwoPartProblem() == true)
 				{
-					System.out.println("Hello");
 					wholeNumber.setText("Find");
 				}
 				else
@@ -292,6 +380,7 @@ public class MissionControl extends JPanel{
 			}
 			temp.add(displayFraction);
 		}
+		System.out.println("Currently: " + showCorrectNumFlag + " " + showCorrectWholeFlag);
 		return temp;
 	}
 
@@ -333,6 +422,7 @@ public class MissionControl extends JPanel{
 	//game play.
 	public void updateDisplay(Problem p)
 	{
+		System.out.println("Did it change? " + showCorrectNumFlag + " " + showCorrectWholeFlag);
 		this.removeAll();
 		this.repaint();
 		if (p.getSecond().getDenominator() == 0){
