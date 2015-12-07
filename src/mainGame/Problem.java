@@ -294,8 +294,8 @@ public class Problem extends JPanel{
 	//This is called by the subtraction problem set generator function to read in the info
 	//from a text file that will supply the equations needed.
 	private void loadSubtractionFile() throws FileNotFoundException{
-//		InputStream reader = getClass().getResourceAsStream("/src/subtraction_problems.txt");
-		FileReader reader = new FileReader("subtraction_problems.txt");
+		InputStream reader = getClass().getResourceAsStream("/data/subtraction_problems.txt");
+//		FileReader reader = new FileReader("subtraction_problems.txt");
 		ArrayList<Problem> temp = new ArrayList<Problem>();
 		Scanner in = new Scanner(reader);
 		while(in.hasNextLine()){
