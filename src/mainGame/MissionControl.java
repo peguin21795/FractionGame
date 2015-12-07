@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -121,6 +122,7 @@ public class MissionControl extends JPanel{
 	public JPanel createFirstTermPanel(Problem prob) throws IOException{
 		JPanel temp = new JPanel();//this panel contains all componts assembled to return
 		temp.setLayout(new GridLayout(1,2));
+//		URL myPicture = getClass().getResource("/images/fracline.png");
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 		wholeNumber = new JLabel();
@@ -154,9 +156,10 @@ public class MissionControl extends JPanel{
 	//second term of the problem displayed on the bottom of the Jframe. the first couple
 	//of problem sets (divide and factor) will not use this panel. NOTE this panel is the 
 	//third panel displayed!!! the second panel displayed is the addition or subtraction sign
-	public JPanel createSecondTermPanel(Problem prob) throws IOException{
+  	public JPanel createSecondTermPanel(Problem prob) throws IOException{
 		JPanel temp = new JPanel();
 		temp.setLayout(new GridLayout(1,2));
+//		URL myPicture = getClass().getResource("/images/fracline.png");
 		BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 		JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 		wholeNumber = new JLabel();
@@ -209,6 +212,8 @@ public class MissionControl extends JPanel{
 			if (showCorrectWholeFlag == true && showCorrectNumFlag == true){
 				System.out.println("1");
 				temp.setLayout(new GridLayout(1,2));
+		//		URL myPicture = getClass().getResource("/images/fracline.png");
+
 				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 				wholeNumber = new JLabel();
@@ -242,6 +247,7 @@ public class MissionControl extends JPanel{
 			else if (showCorrectWholeFlag == true && showCorrectNumFlag == false){
 				System.out.println("2");
 				temp.setLayout(new GridLayout(1,2));
+//				URL myPicture = getClass().getResource("/images/fracline.png");
 				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 				wholeNumber = new JLabel();
@@ -275,6 +281,7 @@ public class MissionControl extends JPanel{
 			else if (showCorrectWholeFlag == false && showCorrectNumFlag == true){
 				System.out.println("3");
 				temp.setLayout(new GridLayout(1,2));
+//				URL myPicture = getClass().getResource("/images/fracline.png");
 				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 				wholeNumber = new JLabel();
@@ -309,6 +316,7 @@ public class MissionControl extends JPanel{
 			{
 				System.out.println("4");
 				temp.setLayout(new GridLayout(1,2));
+//				URL myPicture = getClass().getResource("/images/fracline.png");
 				BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 				JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 				wholeNumber = new JLabel();
@@ -343,6 +351,7 @@ public class MissionControl extends JPanel{
 		{
 			System.out.println("Bye");
 			temp.setLayout(new GridLayout(1,2));
+//			URL myPicture = getClass().getResource("/images/fracline.png");
 			BufferedImage myPicture = ImageIO.read(new File("fracline.png"));
 			JLabel fracLine = new JLabel(new ImageIcon(myPicture));
 			wholeNumber = new JLabel();
@@ -487,6 +496,7 @@ public class MissionControl extends JPanel{
 	//This function is used by the game logic during game play.
 	public ArrayList<SpaceTarget> generateTargets(Problem p)
 	{	
+		System.out.println(p.getSolution().getNumerator() + " " + p.getSolution().getWholeNumber());
 		//Initialize the used cols array list
 		usedCols = new ArrayList<Integer>();
 
@@ -505,8 +515,7 @@ public class MissionControl extends JPanel{
 			targets.add(new SpaceTarget(x, y, p.getSolution().getWholeNumber()));
 			solution = p.getSolution().getWholeNumber();
 		}
-		else if((p.getOperation().equals("divide") && p.getLevel() == 3) || 
-				(p.getOperation().equals("factor") && p.getLevel() == 1) ||
+		else if((p.getOperation().equals("factor") && p.getLevel() == 1) ||
 				(p.getOperation().equals("add") && p.getLevel() == 1) ||
 				(p.getOperation().equals("subtract") && p.getLevel() == 1)){
 			targets.add(new SpaceTarget(x, y, p.getSolution().getNumerator()));

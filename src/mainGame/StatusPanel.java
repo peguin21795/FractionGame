@@ -34,7 +34,7 @@ public class StatusPanel extends JPanel{
 		reward.add("How did you do that!");
 		reward.add("YEEEEHAAAA!!!");
 		reward.add("You are rockin it!!");
-		reward.add("He never saw that comin!");
+//		reward.add("He never saw\n that comin!");
 		reward.add("Congratulations, you won!");
 	}
 
@@ -372,7 +372,7 @@ public class StatusPanel extends JPanel{
 		scorePanel = createScoreBoard();
 		add(scorePanel);
 		Random rn = new Random();
-		int s = rn.nextInt(8);
+		int s = rn.nextInt(7);
 		rewardPanel = createFeedBackPanel(reward.get(s));
 		add(rewardPanel);
 		setVisible(true);
