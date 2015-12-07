@@ -32,7 +32,7 @@ public class Problem extends JPanel{
 	
 	public Problem(String operation, int level, int s)
 	{
-		statusLevel = s;
+		this.statusLevel = s;
 		this.operation = operation;
 		this.level = level;
 		if ((operation == "divide" && level == 3) || (operation == "factor" && (level == 2 || level == 3))
