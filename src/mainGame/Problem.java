@@ -123,9 +123,9 @@ public class Problem extends JPanel{
 		else if (level == 3)
 		{
 			Random rn = new Random(System.nanoTime());
-			int one = (rn.nextInt(100)+1)/10;
+			int one = (rn.nextInt(10)+1);
 			int two = (rn.nextInt(20)+1);
-			int three = (rn.nextInt(100)+1)/10;
+			int three = (rn.nextInt(10)+1);
 			int four = two*three;
 			this.solution = new Term(one, two, three,0);
 			this.first = new Term((four+one), two);

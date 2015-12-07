@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Space extends JPanel implements KeyListener
@@ -126,6 +128,10 @@ public class Space extends JPanel implements KeyListener
 					System.out.println("HIT3");
 					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
+					if(currentProblem == 60){
+						JOptionPane.showMessageDialog(this, "Congatulations!! YOU WON!!!");
+						System.exit(0);
+					}
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
 					numOfHits = 0;
@@ -135,6 +141,10 @@ public class Space extends JPanel implements KeyListener
 					System.out.println("Hit4");
 					status.updateFeedBackPanel(problems.get(currentProblem).getStatusLevel());
 					currentProblem++;
+					if(currentProblem == 60){
+						JOptionPane.showMessageDialog(this, "Congatulations!! YOU WON!!!");
+						System.exit(0);
+					}
 					targets = control.generateTargets(problems.get(currentProblem));
 					control.updateDisplay(problems.get(currentProblem));
 					numOfHits = 0;
