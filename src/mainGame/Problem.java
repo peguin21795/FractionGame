@@ -1,7 +1,7 @@
 package mainGame;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -293,9 +293,10 @@ public class Problem extends JPanel{
 	//This is called by the subtraction problem set generator function to read in the info
 	//from a text file that will supply the equations needed.
 	private void loadSubtractionFile() throws FileNotFoundException{
-		FileReader reader = new FileReader("subtraction_problems.txt");
+		InputStream inStreamObject = getClass().getResourceAsStream("/src/subtraction_problems.txt");
+//		FileReader reader = new FileReader("subtraction_problems.txt");
 		ArrayList<Problem> temp = new ArrayList<Problem>();
-		Scanner in = new Scanner(reader);
+		Scanner in = new Scanner(inStreamObject);
 		while(in.hasNextLine()){
 				String[] termsRead = in.nextLine().split(",");
 				ArrayList<Integer> terms = new ArrayList<Integer>();
