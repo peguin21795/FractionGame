@@ -2,8 +2,6 @@ package junit;
 
 import static org.junit.Assert.*;
 
-import java.awt.event.KeyEvent;
-
 import org.junit.Before;
 import org.junit.Test;
 

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import mainGame.Problem;
 import mainGame.Space;
 
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame{
 
 	final static int WIDTH = 1000;

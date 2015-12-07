@@ -8,13 +8,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class Space extends JPanel implements KeyListener
 {
 	private int rows;
@@ -37,12 +35,12 @@ public class Space extends JPanel implements KeyListener
 	
 	public Space(MissionControl ms, Problem firstProblem, StatusPanel s)
 	{
-		JTextArea topBanner = new JTextArea("    WE  ARE  UNDER  ATTACK  FROM  THE  FEROCIOUS  FRACTION  FLEET!!"
-										+ "\n\n           They have come for our Jalapeno's and SouthPark videos!!"
+		JTextArea topBanner = new JTextArea("  WE  ARE  UNDER  ATTACK  FROM  THE  FEROCIOUS  FRACTION  FLEET!!"
+										+ "\n\n            They have come for our Jalapeno's and SouthPark videos!!"
 										+ "	\n\n            To save the world you must use the right and left arrows on"
-										+ "	\n\n       your keyboard to move your ship under the number that should be where"
-										+ "	\n\n       the question mark is in the answer. Once you're under the right number,"
-										+ "\n\n                          PRESS THE SPACE BAR AND SHOOT IT!!");
+										+ "	\n\n     your keyboard to move your ship under the number that should be where"
+										+ "	\n\n      the question mark is in the answer. Once you're under the right number,"
+										+ "\n\n                         PRESS THE SPACE BAR AND SHOOT IT!!");
 		topBanner.setEditable(false);
 		topBanner.setBackground(Color.blue);
 		topBanner.setForeground(Color.yellow);
@@ -52,6 +50,7 @@ public class Space extends JPanel implements KeyListener
 										+ "\n\n  These Fraction Fighters are sneaky, and sometimes they come in pairs!!"
 										+ "\n\n This means that sometimes there will be two question marks in the answer."
 										+ "\n\n          YOU HAVE TO SHOOT BOTH ANSWERS TO MOVE ON!!"
+										+ "\n\n Make sure you check the demonimator, sometimes the answer isn't reduced"
 										+ "\n\n           Get your fingers ready and click ok to start, Good Luck!!");
 		secondBanner.setEditable(false);
 		secondBanner.setBackground(Color.MAGENTA);
@@ -373,12 +372,5 @@ public class Space extends JPanel implements KeyListener
 		this.ship = ship;
 	}
 	
-	public void storyLinePanel(){
-		JPanel area = new JPanel();
-		JLabel topBanner = new JLabel("WE ARE UNDER ATTACK FROM PHANTOM FRACTION FLEET"
-				+ "\nTo save the world you must use the right and left"
-				+ "\narrows to move under the number that should be where"
-				+ "\nquestion mark is in the answer and press the space bar to shoot!",SwingConstants.CENTER);
-	}
 	
 }

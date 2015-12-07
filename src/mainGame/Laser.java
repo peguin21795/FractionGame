@@ -4,6 +4,7 @@ public class Laser
 {
 	private int row; 
 	private int col;
+	@SuppressWarnings("unused")
 	private Space space;
 	
 	public Laser()

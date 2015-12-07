@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 //up of terms (see Term class) subtraction problems of all levels are read in from a file.
 //there are four types of problems (division, factorization, addition, subtraction).  In
 //addition, each type of problem has three difficulty levels.
+@SuppressWarnings("serial")
 public class Problem extends JPanel{
 	
 	/* The second term will be used if necessary for certain problems.*/

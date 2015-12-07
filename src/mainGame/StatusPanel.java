@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+@SuppressWarnings("serial")
 public class StatusPanel extends JPanel{
 	private JCheckBox DL1, DL2, DL3, FL1, FL2, FL3, AL1, AL2, AL3, SL1, SL2, SL3;
 	private JPanel progressPanel, scorePanel, rewardPanel;
@@ -30,6 +31,10 @@ public class StatusPanel extends JPanel{
 		reward.add("You're a good shot");
 		reward.add("Whoa, you got it!!");
 		reward.add("You're a genius");
+		reward.add("How did you do that!");
+		reward.add("YEEEEHAAAA!!!");
+		reward.add("You are rockin it!!");
+		reward.add("He never saw that comin!");
 		reward.add("Congratulations, you won!");
 	}
 
@@ -367,7 +372,7 @@ public class StatusPanel extends JPanel{
 		scorePanel = createScoreBoard();
 		add(scorePanel);
 		Random rn = new Random();
-		int s = rn.nextInt(4);
+		int s = rn.nextInt(8);
 		rewardPanel = createFeedBackPanel(reward.get(s));
 		add(rewardPanel);
 		setVisible(true);

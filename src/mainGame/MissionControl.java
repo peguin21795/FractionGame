@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class MissionControl extends JPanel{
 	private JLabel wholeNumber,numerator,denominator;
 	private boolean showCorrectWholeFlag = false;
