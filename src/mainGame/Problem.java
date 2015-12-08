@@ -124,6 +124,14 @@ public class Problem extends JPanel{
 			int two = (rn.nextInt(20)+1);
 			int three = (rn.nextInt(10)+1);
 			int four = two*three;
+			while (one >= two)
+			{
+				System.out.println("test");
+				one = (rn.nextInt(10)+1);
+				two = (rn.nextInt(20)+1);
+				three = (rn.nextInt(10)+1);
+				four = two*three;
+			}
 			this.solution = new Term(one, two, three,0);
 			this.first = new Term((four+one), two);
 			this.second = new Term(0,0,0,0);
@@ -173,6 +181,13 @@ public class Problem extends JPanel{
 			int one = (rn.nextInt(20)+1);
 			int two = (rn.nextInt(30)+1);
 			int three = (rn.nextInt(10)+1);
+			while (one >= two)
+			{
+				System.out.println("test");
+				one = (rn.nextInt(10)+1);
+				two = (rn.nextInt(20)+1);
+				three = (rn.nextInt(10)+1);
+			}
 			//this.first = new Term((three*one),(three*two));
 			this.first = new Term(((three*two) + one), two);
 			this.second =  new Term(0,0,0,0);;
@@ -229,6 +244,7 @@ public class Problem extends JPanel{
 			int two = (rn.nextInt(20)+1);
 			int three = (rn.nextInt(10)+1);
 			int four = rn.nextInt(5)+1;
+			
 			if((two+three)< one)
 			{
 				this.solution = new Term((two+three), one);
@@ -239,7 +255,9 @@ public class Problem extends JPanel{
 				{
 					if((two+three) >= (one*i) && (two+three) < (one*(i+1)))
 					{
-						this.solution = new Term(((two+three)-one), one, 1,0);
+						int modulus = ((two+three) - one) % one;
+						int wholeNumber = ((two + three) - modulus) / (one);
+						this.solution = new Term(modulus, one, wholeNumber,0);
 					}	
 				}
 			}
